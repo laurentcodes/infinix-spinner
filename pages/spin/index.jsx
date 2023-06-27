@@ -1,10 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 
 import { useState, useEffect } from 'react';
 
 import SpinningWheel from '@/components/Spinner';
-
-import logo from '../../assets/infinix-logo.jpeg';
 
 export default function Spinner() {
 	const [mobile, setMobile] = useState(null);
@@ -34,7 +33,12 @@ export default function Spinner() {
 
 	return (
 		<main className='h-screen w-screen flex flex-col justify-start items-center overflow-hidden md:overflow-auto'>
-			<Image src={logo} alt='Infinix Logo' width={200} height={200} />
+			<img
+				src={'/assets/infinix-logo.jpeg'}
+				alt='Infinix Logo'
+				width={200}
+				height={200}
+			/>
 
 			{mobile !== null && (
 				<div className='mb-12'>

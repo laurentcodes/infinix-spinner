@@ -1,11 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import Image from 'next/image';
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
-import logo from '../assets/infinix-logo.jpeg';
 
 export default function Home() {
 	const router = useRouter();
@@ -14,7 +13,12 @@ export default function Home() {
 
 	return (
 		<main className='h-screen p-5 flex flex-col justify-evenly items-center overflow-hidden'>
-			<Image src={logo} alt='Infinix Logo' width={200} height={200} />
+			<img
+				src={'/assets/infinix-logo.jpeg'}
+				alt='Infinix Logo'
+				width={200}
+				height={200}
+			/>
 
 			<div className='w-80 md:w-96 flex flex-col'>
 				<input
