@@ -32,15 +32,17 @@ export default function Spinner() {
 
 	return (
 		<main className='h-screen w-screen flex justify-center content-center overflow-hidden'>
-			<SpinningWheel
-				items={items}
-				spinningDuration={3}
-				spinningSpeed={2}
-				width={mobile ? 350 : 500}
-				height={mobile ? 350 : 500}
-				onFinished={onFinished}
-				isMobile={mobile}
-			/>
+			{mobile !== null && (
+				<SpinningWheel
+					items={items}
+					spinningDuration={3}
+					spinningSpeed={2}
+					width={mobile ? 350 : 500}
+					height={mobile ? 350 : 500}
+					onFinished={onFinished}
+					isMobile={mobile}
+				/>
+			)}
 		</main>
 	);
 }
