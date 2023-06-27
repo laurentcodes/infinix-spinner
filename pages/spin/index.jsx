@@ -25,6 +25,17 @@ export default function Spinner() {
 		'Thank You',
 	];
 
+	const itemColors = [
+		'#F0CF50',
+		'#EE4040',
+		'#815CD1',
+		'#EE4040',
+		'#3DA5E0',
+		'#EE4040',
+		'#194707',
+		'#EE4040',
+	];
+
 	const onFinished = (selectedItem) => {
 		// Custom logic to handle the selected item when spinning is complete
 		console.log('Chosen item:', selectedItem);
@@ -34,9 +45,9 @@ export default function Spinner() {
 	};
 
 	return (
-		<main className='h-screen w-screen flex flex-col justify-start items-center overflow-hidden md:overflow-auto'>
+		<main className='h-screen w-screen flex flex-col justify-start items-center overflow-hidden md:overflow-auto bg-gradient-to-br from-cyan-500 to-green-500'>
 			<img
-				src={'/assets/infinix-logo.jpeg'}
+				src={'/assets/infinix-logo.png'}
 				alt='Infinix Logo'
 				width={200}
 				height={200}
@@ -46,16 +57,17 @@ export default function Spinner() {
 				<div className='mb-12 flex flex-col items-center'>
 					<SpinningWheel
 						items={items}
-						spinningDuration={3}
-						spinningSpeed={2}
-						width={mobile ? 350 : 500}
-						height={mobile ? 350 : 500}
+						itemColors={itemColors}
+						spinningDuration={10}
+						spinningSpeed={50}
+						width={mobile ? 380 : 600}
+						height={mobile ? 380 : 600}
 						onFinished={onFinished}
 						isMobile={mobile}
 					/>
 
 					{wonItem && (
-						<p className='mt-5 font-bold text-xl'>
+						<p className='mt-5 font-bold text-xl text-center uppercase'>
 							{wonItem === 'Thank You'
 								? 'Thanks for Participating!'
 								: `You have won: ${wonItem}`}

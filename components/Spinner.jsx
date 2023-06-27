@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 const SpinningWheel = ({
 	items,
+	itemColors,
 	spinningDuration,
 	spinningSpeed,
 	width,
@@ -25,6 +26,7 @@ const SpinningWheel = ({
 			360 * spinningDuration + randomIndex * (360 / items.length);
 
 		let currentAngle = 0;
+
 		const spinInterval = setInterval(() => {
 			currentAngle += spinningSpeed;
 
@@ -55,7 +57,8 @@ const SpinningWheel = ({
 			const endAngle = (i + 1) * angle + rotationAngle;
 
 			ctx.beginPath();
-			ctx.fillStyle = i % 2 === 0 ? '#FFFFFF' : '#F0F0F0';
+			ctx.fillStyle = itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0'); // Use custom color if available, otherwise alternate between white and light gray
+			ctx.moveTo(centerX, centerY);
 			ctx.moveTo(centerX, centerY);
 			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
 			ctx.closePath();
@@ -65,13 +68,11 @@ const SpinningWheel = ({
 			ctx.translate(centerX, centerY);
 			ctx.rotate(startAngle + angle / 2);
 
-			const maxTextWidth = radius * angle; // Maximum width available for the text within the section
-
-			ctx.fillStyle = '#000000';
-			ctx.font = `${isMobile ? '10px' : '12px'} Arial`;
+			ctx.fillStyle = selectedItem === i ? '#22c55e' : '#fff'; // Set color to red for selected item, otherwise black
+			ctx.font = `bold ${isMobile ? '10px' : '11px'} Arial`;
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'middle';
-			ctx.fillText(items[i], radius / 2, 0);
+			ctx.fillText(items[i].toUpperCase(), radius / 2, 0);
 			ctx.restore();
 		}
 
@@ -95,7 +96,7 @@ const SpinningWheel = ({
 			ctx.translate(centerX, centerY);
 			ctx.rotate(highlightStartAngle + angle / 2);
 			ctx.fillStyle = '#FFFFFF';
-			ctx.fillText(items[selectedIndex], radius / 2, 0);
+			ctx.fillText(items[selectedIndex].toUpperCase(), radius / 2, 0);
 			ctx.restore();
 		}
 	};
@@ -105,9 +106,9 @@ const SpinningWheel = ({
 	}, [rotationAngle, selectedItem]);
 
 	return (
-		<div>
+		<div className='flex flex-col items-center'>
 			<button
-				className='p-2 mt-3 bg-green-500 rounded-full w-[80px] h-[80px] text-white font-bold hover:bg-green-200 transition-all ease-in duration-200'
+				className='p-2 mb-12 bg-green-500 rounded-full w-[80px] h-[80px] text-white font-bold hover:bg-green-200 transition-all ease-in duration-200'
 				onClick={spinWheel}
 				disabled={isSpinning}
 			>
