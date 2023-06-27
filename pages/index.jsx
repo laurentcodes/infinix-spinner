@@ -29,7 +29,7 @@ export default function Home() {
 
 				<button
 					className='p-2 mt-3 bg-green-500 rounded-lg w-full text-white'
-					onClick={() => router.push(`/spinner?email=${email}`)}
+					onClick={() => router.push(`/spin?email=${email}`)}
 				>
 					Continue
 				</button>
