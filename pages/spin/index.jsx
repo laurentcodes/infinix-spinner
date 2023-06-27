@@ -55,7 +55,11 @@ export default function Spinner() {
 					/>
 
 					{wonItem && (
-						<p className='mt-5 font-bold text-xl'>You have won: {wonItem}</p>
+						<p className='mt-5 font-bold text-xl'>
+							{wonItem === 'Thank You'
+								? 'Thanks for Participating!'
+								: `You have won: ${wonItem}`}
+						</p>
 					)}
 				</div>
 			)}

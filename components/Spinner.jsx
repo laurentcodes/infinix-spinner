@@ -107,11 +107,11 @@ const SpinningWheel = ({
 	return (
 		<div>
 			<button
-				className='p-2 mt-3 bg-green-500 rounded-full w-[80px] h-[80px] text-white'
+				className='p-2 mt-3 bg-green-500 rounded-full w-[80px] h-[80px] text-white font-bold hover:bg-green-200 transition-all ease-in duration-200'
 				onClick={spinWheel}
 				disabled={isSpinning}
 			>
-				Spin
+				SPIN
 			</button>
 
 			<canvas ref={canvasRef} width={width} height={height} />
