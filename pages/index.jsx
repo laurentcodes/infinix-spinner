@@ -1,7 +1,11 @@
 'use client';
 
+import Image from 'next/image';
+
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+import logo from '../assets/infinix-logo.jpeg';
 
 export default function Home() {
 	const router = useRouter();
@@ -9,11 +13,10 @@ export default function Home() {
 	const [email, setEmail] = useState('');
 
 	return (
-		<main className='h-screen p-5 flex justify-center overflow-hidden'>
-			<div className='w-96 flex flex-col justify-center'>
-				{/* <label htmlFor='email' className='block mb-2 text-grey-500'>
-					Email
-				</label> */}
+		<main className='h-screen p-5 flex flex-col justify-evenly items-center overflow-hidden'>
+			<Image src={logo} alt='Infinix Logo' width={200} height={200} />
+
+			<div className='w-80 md:w-96 flex flex-col'>
 				<input
 					type='text'
 					id='email'
