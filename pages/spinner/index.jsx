@@ -1,6 +1,17 @@
+import { useState, useEffect } from 'react';
+
 import SpinningWheel from '@/components/Spinner';
 
 export default function Spinner() {
+	const [mobile, setMobile] = useState(null);
+
+	useEffect(() => {
+		const checkMobile = window.innerWidth <= 768;
+		setMobile(checkMobile);
+	}, []);
+
+	console.log(mobile);
+
 	const items = [
 		'0 Naira Down Payment',
 		'Thank You',
@@ -25,9 +36,10 @@ export default function Spinner() {
 				items={items}
 				spinningDuration={3}
 				spinningSpeed={2}
-				width={500}
-				height={500}
+				width={mobile ? 350 : 500}
+				height={mobile ? 350 : 500}
 				onFinished={onFinished}
+				isMobile={mobile}
 			/>
 		</main>
 	);

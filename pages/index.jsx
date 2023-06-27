@@ -9,11 +9,11 @@ export default function Home() {
 	const [email, setEmail] = useState('');
 
 	return (
-		<main className='h-screen p-5 flex justify-center'>
+		<main className='h-screen p-5 flex justify-center overflow-hidden'>
 			<div className='w-96 flex flex-col justify-center'>
-				<label htmlFor='email' className='block mb-2 text-grey-500'>
+				{/* <label htmlFor='email' className='block mb-2 text-grey-500'>
 					Email
-				</label>
+				</label> */}
 				<input
 					type='text'
 					id='email'

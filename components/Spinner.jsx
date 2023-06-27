@@ -7,6 +7,7 @@ const SpinningWheel = ({
 	width,
 	height,
 	onFinished,
+	isMobile,
 }) => {
 	const canvasRef = useRef(null);
 	const [selectedItem, setSelectedItem] = useState(null);
@@ -67,7 +68,7 @@ const SpinningWheel = ({
 			const maxTextWidth = radius * angle; // Maximum width available for the text within the section
 
 			ctx.fillStyle = '#000000';
-			ctx.font = `12px Arial`;
+			ctx.font = `${isMobile ? '10px' : '12px'} Arial`;
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'middle';
 			ctx.fillText(items[i], radius / 2, 0);
