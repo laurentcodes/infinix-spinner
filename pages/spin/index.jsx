@@ -7,6 +7,7 @@ import SpinningWheel from '@/components/Spinner';
 
 export default function Spinner() {
 	const [mobile, setMobile] = useState(null);
+	const [wonItem, setWonItem] = useState('');
 
 	useEffect(() => {
 		const checkMobile = window.innerWidth <= 768;
@@ -27,6 +28,7 @@ export default function Spinner() {
 	const onFinished = (selectedItem) => {
 		// Custom logic to handle the selected item when spinning is complete
 		console.log('Chosen item:', selectedItem);
+		setWonItem(selectedItem);
 		// alert(selectedItem);
 		// ... Additional actions
 	};
@@ -41,7 +43,7 @@ export default function Spinner() {
 			/>
 
 			{mobile !== null && (
-				<div className='mb-12'>
+				<div className='mb-12 flex flex-col items-center'>
 					<SpinningWheel
 						items={items}
 						spinningDuration={3}
@@ -51,6 +53,10 @@ export default function Spinner() {
 						onFinished={onFinished}
 						isMobile={mobile}
 					/>
+
+					{wonItem && (
+						<p className='mt-5 font-bold text-xl'>You have won: {wonItem}</p>
+					)}
 				</div>
 			)}
 		</main>
