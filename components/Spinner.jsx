@@ -41,6 +41,66 @@ const SpinningWheel = ({
 		}, spinningSpeed);
 	};
 
+	// const drawWheel = () => {
+	// 	const canvas = canvasRef.current;
+	// 	const ctx = canvas.getContext('2d');
+
+	// 	const radius = Math.min(canvas.width, canvas.height) / 2;
+	// 	const centerX = canvas.width / 2;
+	// 	const centerY = canvas.height / 2;
+	// 	const angle = (2 * Math.PI) / items.length;
+
+	// 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// 	for (let i = 0; i < items.length; i++) {
+	// 		const startAngle = i * angle + rotationAngle;
+	// 		const endAngle = (i + 1) * angle + rotationAngle;
+
+	// 		ctx.beginPath();
+	// 		ctx.fillStyle = itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0'); // Use custom color if available, otherwise alternate between white and light gray
+	// 		ctx.moveTo(centerX, centerY);
+	// 		ctx.moveTo(centerX, centerY);
+	// 		ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+	// 		ctx.closePath();
+	// 		ctx.fill();
+
+	// 		ctx.save();
+	// 		ctx.translate(centerX, centerY);
+	// 		ctx.rotate(startAngle + angle / 2);
+
+	// 		ctx.fillStyle = selectedItem === i ? '#22c55e' : '#fff'; // Set color to red for selected item, otherwise black
+	// 		ctx.font = `bold ${isMobile ? '10px' : '11px'} Arial`;
+	// 		ctx.textAlign = 'center';
+	// 		ctx.textBaseline = 'middle';
+	// 		ctx.fillText(items[i].toUpperCase(), radius / 2, 0);
+	// 		ctx.restore();
+	// 	}
+
+	// 	// Highlight the selected item
+	// 	if (selectedItem !== null) {
+	// 		const selectedIndex = items.indexOf(selectedItem);
+	// 		const highlightStartAngle = selectedIndex * angle + rotationAngle;
+	// 		const highlightEndAngle = (selectedIndex + 1) * angle + rotationAngle;
+
+	// 		ctx.beginPath();
+	// 		ctx.moveTo(centerX, centerY);
+	// 		ctx.arc(centerX, centerY, radius, highlightStartAngle, highlightEndAngle);
+	// 		ctx.closePath();
+
+	// 		ctx.save();
+	// 		ctx.fillStyle = '#22c55e';
+	// 		ctx.fill();
+	// 		ctx.restore();
+
+	// 		ctx.save();
+	// 		ctx.translate(centerX, centerY);
+	// 		ctx.rotate(highlightStartAngle + angle / 2);
+	// 		ctx.fillStyle = '#FFFFFF';
+	// 		ctx.fillText(items[selectedIndex].toUpperCase(), radius / 2, 0);
+	// 		ctx.restore();
+	// 	}
+	// };
+
 	const drawWheel = () => {
 		const canvas = canvasRef.current;
 		const ctx = canvas.getContext('2d');
@@ -59,7 +119,6 @@ const SpinningWheel = ({
 			ctx.beginPath();
 			ctx.fillStyle = itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0'); // Use custom color if available, otherwise alternate between white and light gray
 			ctx.moveTo(centerX, centerY);
-			ctx.moveTo(centerX, centerY);
 			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
 			ctx.closePath();
 			ctx.fill();
@@ -76,9 +135,26 @@ const SpinningWheel = ({
 			ctx.restore();
 		}
 
+		// Draw the circle with pointer in the center
+		ctx.beginPath();
+		ctx.arc(centerX, centerY, 10, 0, 2 * Math.PI);
+		ctx.fillStyle = '#22c55e';
+		ctx.fill();
+
+		// Calculate the rotation angle for the pointer
+		const selectedIndex = items.indexOf(selectedItem);
+		const pointerRotationAngle =
+			rotationAngle + selectedIndex * angle + angle / 2;
+
+		// Draw the pointer
+		ctx.save();
+		ctx.translate(centerX, centerY);
+		ctx.rotate(pointerRotationAngle);
+
+		ctx.restore();
+
 		// Highlight the selected item
 		if (selectedItem !== null) {
-			const selectedIndex = items.indexOf(selectedItem);
 			const highlightStartAngle = selectedIndex * angle + rotationAngle;
 			const highlightEndAngle = (selectedIndex + 1) * angle + rotationAngle;
 
