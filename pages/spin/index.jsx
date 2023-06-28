@@ -1,11 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { useState, useEffect } from 'react';
 
 import SpinningWheel from '@/components/Spinner';
 
 export default function Spinner() {
+	const router = useRouter();
+	const { email } = router.query;
+
+	console.log(email);
+
+	if (email?.length < 1) {
+		console.log('hey');
+		window.location.search = '';
+	}
+
 	const [mobile, setMobile] = useState(null);
 	const [wonItem, setWonItem] = useState('');
 
@@ -45,7 +55,7 @@ export default function Spinner() {
 	};
 
 	return (
-		<main className='h-screen w-screen flex flex-col justify-start items-center overflow-hidden md:overflow-auto bg-gradient-to-br from-cyan-500 to-green-500'>
+		<main className='h-full w-screen flex flex-col justify-start items-center bg-gradient-to-br from-cyan-500 to-green-500'>
 			<img
 				src={'/assets/infinix-logo.png'}
 				alt='Infinix Logo'
@@ -60,14 +70,14 @@ export default function Spinner() {
 						itemColors={itemColors}
 						spinningDuration={10}
 						spinningSpeed={50}
-						width={mobile ? 380 : 600}
-						height={mobile ? 380 : 600}
+						width={mobile ? 375 : 600}
+						height={mobile ? 375 : 600}
 						onFinished={onFinished}
 						isMobile={mobile}
 					/>
 
 					{wonItem && (
-						<p className='mt-5 font-bold text-xl text-center uppercase'>
+						<p className='my-5 font-bold text-xl text-center uppercase'>
 							{wonItem === 'Thank You'
 								? 'Thanks for Participating!'
 								: `You have won: ${wonItem}`}
