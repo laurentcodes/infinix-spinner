@@ -207,16 +207,16 @@ const SpinningWheel = ({
 		});
 	};
 
-	const loadImages = async () => {
-		try {
-			await Promise.all(items.map((item) => loadImage(item.src)));
-			setImagesLoaded(true);
-		} catch (error) {
-			console.error('Error loading images:', error);
-		}
-	};
-
 	useEffect(() => {
+		const loadImages = async () => {
+			try {
+				await Promise.all(items.map((item) => loadImage(item.src)));
+				setImagesLoaded(true);
+			} catch (error) {
+				console.error('Error loading images:', error);
+			}
+		};
+
 		loadImages();
 	}, []);
 
@@ -248,7 +248,7 @@ const SpinningWheel = ({
 			ctx.beginPath();
 			ctx.fillStyle =
 				selectedItem === items[i].value
-					? '#22c55e'
+					? '#80ed99'
 					: itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0');
 			ctx.moveTo(centerX, centerY);
 			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
@@ -266,7 +266,7 @@ const SpinningWheel = ({
 				const aspectRatio = image.width / image.height;
 
 				// Adjust the desired width and height for the images
-				const desiredImageWidth = radius * 0.35; // Change this value as desired
+				const desiredImageWidth = radius * 0.4; // Change this value as desired
 				const desiredImageHeight = desiredImageWidth / aspectRatio;
 
 				const imageX = -desiredImageWidth / 2 + imageXOffset; // Position the image in the center horizontally
@@ -285,7 +285,7 @@ const SpinningWheel = ({
 		}
 
 		const buttonSize = radius * spinButtonSize;
-		ctx.fillStyle = '#22c55e';
+		ctx.fillStyle = '#80ed99';
 		ctx.beginPath();
 		ctx.arc(centerX, centerY, buttonSize, 0, 2 * Math.PI);
 		ctx.fill();

@@ -30,12 +30,12 @@ export default function Spinner() {
 			src: '/assets/items/0_down_payment.png',
 		},
 		{ value: 'Thank You', weight: 5, src: '/assets/items/thank_you.png' },
-		{ value: '1000NGN AIRTIME', weight: 1, src: '/assets/items/airtime.png' },
 		{
 			value: 'Infinix NOTE30 Business Backpack',
 			weight: 1,
 			src: '/assets/items/backpack.png',
 		},
+		{ value: '1000NGN AIRTIME', weight: 1, src: '/assets/items/airtime.png' },
 		{
 			value: 'Wireless Speaker Infinix XS01 Purple',
 			weight: 1,
@@ -43,16 +43,8 @@ export default function Spinner() {
 		},
 	];
 
-	const itemColors = [
-		'#F0CF50',
-		'#EE4040',
-		'#815CD1',
-		'#EE4040',
-		'#3DA5E0',
-		'#EE4040',
-		'#194707',
-		'#EE4040',
-	];
+	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
+	const itemColors = ['#caf0f8', '#c7f9cc', '#90e0ef', '#caf0f8', '#90e0ef'];
 
 	const onFinished = (selectedItem) => {
 		// Custom logic to handle the selected item when spinning is complete
