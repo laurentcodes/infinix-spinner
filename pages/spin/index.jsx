@@ -44,7 +44,7 @@ export default function Spinner() {
 	];
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
-	const itemColors = ['#caf0f8', '#c7f9cc', '#90e0ef', '#caf0f8', '#90e0ef'];
+	const itemColors = ['#d8f3dc', '#40916c', '#95d5b2', '#d8f3dc', '#95d5b2'];
 
 	const onFinished = (selectedItem) => {
 		// Custom logic to handle the selected item when spinning is complete
@@ -68,7 +68,7 @@ export default function Spinner() {
 					<SpinningWheel
 						items={items}
 						itemColors={itemColors}
-						spinningDuration={15}
+						spinningDuration={8}
 						spinningSpeed={50}
 						width={mobile ? 375 : 600}
 						height={mobile ? 375 : 600}

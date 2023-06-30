@@ -1,145 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-// const SpinningWheel = ({
-// 	items,
-// 	itemColors,
-// 	spinningDuration,
-// 	spinningSpeed,
-// 	width,
-// 	height,
-// 	onFinished,
-// 	isMobile,
-// }) => {
-// 	const canvasRef = useRef(null);
-// 	const [selectedItem, setSelectedItem] = useState(null);
-// 	const [isSpinning, setIsSpinning] = useState(false);
-// 	const [rotationAngle, setRotationAngle] = useState(0);
-
-// 	const spinWheel = () => {
-// 		setIsSpinning(true);
-// 		setSelectedItem(null);
-
-// 		const randomIndex = Math.floor(Math.random() * items.length);
-// 		const selectedItem = items[randomIndex];
-
-// 		const targetAngle =
-// 			360 * spinningDuration + randomIndex * (360 / items.length);
-
-// 		let currentAngle = 0;
-
-// 		const spinInterval = setInterval(() => {
-// 			currentAngle += spinningSpeed;
-
-// 			if (currentAngle >= targetAngle) {
-// 				clearInterval(spinInterval);
-// 				setIsSpinning(false);
-// 				setSelectedItem(selectedItem);
-// 				onFinished(selectedItem); // Call the onFinished function with the selected item
-// 			}
-
-// 			setRotationAngle(currentAngle);
-// 		}, spinningSpeed);
-// 	};
-
-// 	const drawWheel = () => {
-// 		const canvas = canvasRef.current;
-// 		const ctx = canvas.getContext('2d');
-
-// 		const spinButtonSize = isMobile ? 0.17 : 0.19;
-
-// 		const radius = Math.min(canvas.width, canvas.height) / 2;
-// 		const centerX = canvas.width / 2;
-// 		const centerY = canvas.height / 2;
-// 		const angle = (2 * Math.PI) / items.length;
-
-// 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-// 		for (let i = 0; i < items.length; i++) {
-// 			const startAngle = i * angle + rotationAngle;
-// 			const endAngle = (i + 1) * angle + rotationAngle;
-
-// 			ctx.beginPath();
-// 			ctx.fillStyle = itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0'); // Use custom color if available, otherwise alternate between white and light gray
-// 			ctx.moveTo(centerX, centerY);
-// 			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-// 			ctx.closePath();
-// 			ctx.fill();
-
-// 			ctx.save();
-// 			ctx.translate(centerX, centerY);
-// 			ctx.rotate(startAngle + angle / 2);
-
-// 			ctx.fillStyle = selectedItem === i ? '#22c55e' : '#fff'; // Set color to red for selected item, otherwise black
-// 			ctx.font = `bold ${isMobile ? '12px' : '20px'} Arial`;
-// 			ctx.textAlign = 'center';
-// 			ctx.textBaseline = 'middle';
-// 			ctx.fillText(items[i].toUpperCase(), radius / 2, 0);
-// 			ctx.restore();
-// 		}
-
-// 		// Highlight the selected item
-// 		if (selectedItem !== null) {
-// 			const selectedIndex = items.indexOf(selectedItem);
-// 			const highlightStartAngle = selectedIndex * angle + rotationAngle;
-// 			const highlightEndAngle = (selectedIndex + 1) * angle + rotationAngle;
-
-// 			ctx.beginPath();
-// 			ctx.moveTo(centerX, centerY);
-// 			ctx.arc(centerX, centerY, radius, highlightStartAngle, highlightEndAngle);
-// 			ctx.closePath();
-
-// 			ctx.save();
-// 			ctx.fillStyle = '#22c55e';
-// 			ctx.fill();
-// 			ctx.restore();
-
-// 			ctx.save();
-// 			ctx.translate(centerX, centerY);
-// 			ctx.rotate(highlightStartAngle + angle / 2);
-// 			ctx.fillStyle = '#FFFFFF';
-// 			ctx.fillText(items[selectedIndex].toUpperCase(), radius / 2, 0);
-// 			ctx.restore();
-// 		}
-
-// 		// Draw the spin button in the center
-// 		const buttonSize = radius * spinButtonSize; // Adjust the size of the button relative to the radius
-// 		ctx.fillStyle = '#22c55e'; // Green color for the button
-// 		ctx.beginPath();
-// 		ctx.arc(centerX, centerY, buttonSize, 0, 2 * Math.PI);
-// 		ctx.fill();
-
-// 		ctx.fillStyle = '#fff'; // White color for the button text
-// 		ctx.font = `bold ${isMobile ? '13px' : '16px'} Arial`;
-// 		ctx.textAlign = 'center';
-// 		ctx.textBaseline = 'middle';
-// 		ctx.fillText('SPIN', centerX, centerY);
-
-// 		// Draw white border
-// 		const borderWidth = 2; // Width of the white border
-// 		ctx.strokeStyle = '#fff'; // White color for the border
-// 		ctx.lineWidth = borderWidth;
-// 		ctx.beginPath();
-// 		ctx.arc(centerX, centerY, radius - borderWidth / 2, 0, 2 * Math.PI);
-// 		ctx.stroke();
-// 	};
-
-// 	useEffect(() => {
-// 		drawWheel();
-// 	}, [rotationAngle, selectedItem]);
-
-// 	return (
-// 		<div className='flex flex-col items-center'>
-// 			<canvas
-// 				ref={canvasRef}
-// 				width={width}
-// 				height={height}
-// 				onClick={spinWheel}
-// 				style={{ cursor: 'pointer' }}
-// 			/>
-// 		</div>
-// 	);
-// };
-
 const SpinningWheel = ({
 	items,
 	itemColors,
@@ -229,7 +89,7 @@ const SpinningWheel = ({
 
 		const ctx = canvas.getContext('2d');
 
-		const spinButtonSize = isMobile ? 0.17 : 0.19;
+		const spinButtonSize = isMobile ? 0.17 : 0.15;
 
 		const imageXOffset = isMobile ? 115 : 190;
 		const imageYOffset = 5;
@@ -246,9 +106,16 @@ const SpinningWheel = ({
 			const endAngle = (i + 1) * angle + rotationAngle;
 
 			ctx.beginPath();
+			ctx.fillStyle = itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0');
+			ctx.moveTo(centerX, centerY);
+			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+			ctx.closePath();
+			ctx.fill();
+
+			ctx.beginPath();
 			ctx.fillStyle =
 				selectedItem === items[i].value
-					? '#80ed99'
+					? '#081c15'
 					: itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0');
 			ctx.moveTo(centerX, centerY);
 			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
@@ -266,11 +133,11 @@ const SpinningWheel = ({
 				const aspectRatio = image.width / image.height;
 
 				// Adjust the desired width and height for the images
-				const desiredImageWidth = radius * 0.4; // Change this value as desired
+				const desiredImageWidth = radius * 0.4;
 				const desiredImageHeight = desiredImageWidth / aspectRatio;
 
-				const imageX = -desiredImageWidth / 2 + imageXOffset; // Position the image in the center horizontally
-				const imageY = -desiredImageHeight / 2 - imageYOffset; // Position the image in the center vertically
+				const imageX = -desiredImageWidth / 2 + imageXOffset;
+				const imageY = -desiredImageHeight / 2 - imageYOffset;
 
 				ctx.drawImage(
 					image,
@@ -285,19 +152,62 @@ const SpinningWheel = ({
 		}
 
 		const buttonSize = radius * spinButtonSize;
-		ctx.fillStyle = '#80ed99';
+		ctx.fillStyle = '#081c15';
 		ctx.beginPath();
 		ctx.arc(centerX, centerY, buttonSize, 0, 2 * Math.PI);
 		ctx.fill();
 
+		// const triangleSize = buttonSize * 0.9; // Adjust the triangle size as needed
+
+		// // Calculate the angle between the center of the spin button and the selected item
+		// let triangleRotationAngle = 0;
+		// let triangleX = centerX;
+		// let triangleY = centerY - buttonSize - triangleSize / 2 + 20; // Initial position at the top of the spin button
+
+		// if (selectedItem) {
+		// 	const selectedItemIndex = items.findIndex(
+		// 		(item) => item.value === selectedItem
+		// 	);
+		// 	const selectedItemAngle =
+		// 		rotationAngle + selectedItemIndex * angle + angle / 2;
+		// 	const angleToCenter = Math.atan2(centerY, centerX);
+		// 	triangleRotationAngle = selectedItemAngle - angleToCenter;
+
+		// 	// Calculate the position of the triangle based on the selected item's angle
+		// 	const triangleRadius = buttonSize - triangleSize / 2; // Adjusted radius to keep the triangle within the spin button
+
+		// 	triangleX = centerX + triangleRadius * Math.cos(selectedItemAngle);
+		// 	triangleY = centerY + triangleRadius * Math.sin(selectedItemAngle);
+		// }
+
+		// ctx.save();
+		// ctx.translate(triangleX, triangleY);
+		// ctx.rotate(triangleRotationAngle);
+
+		// ctx.beginPath();
+		// ctx.moveTo(0, -triangleSize / 2); // Top point
+		// ctx.lineTo(triangleSize / 2, triangleSize / 3); // Bottom right point
+		// ctx.lineTo(-triangleSize / 2, triangleSize / 3); // Bottom left point
+		// ctx.closePath();
+
+		// ctx.fillStyle = '#081c15'; // White color for the triangle
+		// ctx.fill();
+
+		// ctx.strokeStyle = '#081c15'; // White color for the triangle border
+		// ctx.lineWidth = 2;
+		// ctx.stroke();
+
+		// ctx.restore();
+
+		// Draw the "SPIN" text on the button
 		ctx.fillStyle = '#fff';
-		ctx.font = `bold ${isMobile ? '13px' : '16px'} Arial`;
+		ctx.font = `bold ${isMobile ? '13px' : '22px'} Arial`;
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 		ctx.fillText('SPIN', centerX, centerY);
 
-		const borderWidth = 2;
-		ctx.strokeStyle = '#fff';
+		const borderWidth = 5;
+		ctx.strokeStyle = '#081c15';
 		ctx.lineWidth = borderWidth;
 		ctx.beginPath();
 		ctx.arc(centerX, centerY, radius - borderWidth / 2, 0, 2 * Math.PI);
