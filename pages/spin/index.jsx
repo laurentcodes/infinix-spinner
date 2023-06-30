@@ -44,7 +44,8 @@ export default function Spinner() {
 	];
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
-	const itemColors = ['#d8f3dc', '#40916c', '#95d5b2', '#d8f3dc', '#95d5b2'];
+	// const itemColors = ['#d8f3dc', '#40916c', '#95d5b2', '#d8f3dc', '#95d5b2'];
+	const itemColors = ['#61a5c2', '#2a6f97', '#1b4332', '#52b788', '#014f86'];
 
 	const onFinished = (selectedItem) => {
 		// Custom logic to handle the selected item when spinning is complete
