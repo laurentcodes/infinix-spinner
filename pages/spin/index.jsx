@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
-
 import { useState, useEffect } from 'react';
 
 import SpinningWheel from '@/components/Spinner';
@@ -25,14 +24,23 @@ export default function Spinner() {
 	}, []);
 
 	const items = [
-		'0 Naira Down Payment',
-		'Thank You',
-		'Infinix NOTE30 Business Backpack',
-		'Thank You',
-		'Wireless Speaker Infinix XS01 Purple',
-		'Thank You',
-		'1000NGN AIRTIME',
-		'Thank You',
+		{
+			value: '0 Naira Down Payment',
+			weight: 1,
+			src: '/assets/items/0_down_payment.png',
+		},
+		{ value: 'Thank You', weight: 5, src: '/assets/items/thank_you.png' },
+		{ value: '1000NGN AIRTIME', weight: 1, src: '/assets/items/airtime.png' },
+		{
+			value: 'Infinix NOTE30 Business Backpack',
+			weight: 1,
+			src: '/assets/items/backpack.png',
+		},
+		{
+			value: 'Wireless Speaker Infinix XS01 Purple',
+			weight: 1,
+			src: '/assets/items/wireless_speaker.png',
+		},
 	];
 
 	const itemColors = [
@@ -55,7 +63,7 @@ export default function Spinner() {
 	};
 
 	return (
-		<main className='h-full w-screen flex flex-col justify-start items-center bg-gradient-to-br from-cyan-500 to-green-500'>
+		<main className='h-screen md:h-full w-screen flex flex-col justify-start items-center bg-white'>
 			<img
 				src={'/assets/infinix-logo.png'}
 				alt='Infinix Logo'
@@ -68,7 +76,7 @@ export default function Spinner() {
 					<SpinningWheel
 						items={items}
 						itemColors={itemColors}
-						spinningDuration={10}
+						spinningDuration={15}
 						spinningSpeed={50}
 						width={mobile ? 375 : 600}
 						height={mobile ? 375 : 600}
