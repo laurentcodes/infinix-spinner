@@ -115,7 +115,7 @@ const SpinningWheel = ({
 			ctx.beginPath();
 			ctx.fillStyle =
 				selectedItem === items[i].value
-					? '#081c15'
+					? '#80ed99'
 					: itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0');
 			ctx.moveTo(centerX, centerY);
 			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
