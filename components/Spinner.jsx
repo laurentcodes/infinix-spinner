@@ -67,16 +67,16 @@ const SpinningWheel = ({
 		});
 	};
 
-	useEffect(() => {
-		const loadImages = async () => {
-			try {
-				await Promise.all(items.map((item) => loadImage(item.src)));
-				setImagesLoaded(true);
-			} catch (error) {
-				console.error('Error loading images:', error);
-			}
-		};
+	const loadImages = async () => {
+		try {
+			await Promise.all(items.map((item) => loadImage(item.src)));
+			setImagesLoaded(true);
+		} catch (error) {
+			console.error('Error loading images:', error);
+		}
+	};
 
+	useEffect(() => {
 		loadImages();
 	}, []);
 
@@ -89,10 +89,10 @@ const SpinningWheel = ({
 
 		const ctx = canvas.getContext('2d');
 
-		const spinButtonSize = isMobile ? 0.17 : 0.15;
+		const spinButtonSize = isMobile ? 0.17 : 0.19;
 
-		const imageXOffset = isMobile ? 115 : 190;
-		const imageYOffset = 5;
+		const imageXOffset = isMobile ? 110 : 170;
+		const imageYOffset = 20;
 
 		const radius = Math.min(canvas.width, canvas.height) / 2;
 		const centerX = canvas.width / 2;
@@ -106,16 +106,9 @@ const SpinningWheel = ({
 			const endAngle = (i + 1) * angle + rotationAngle;
 
 			ctx.beginPath();
-			ctx.fillStyle = itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0');
-			ctx.moveTo(centerX, centerY);
-			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-			ctx.closePath();
-			ctx.fill();
-
-			ctx.beginPath();
 			ctx.fillStyle =
 				selectedItem === items[i].value
-					? '#80ed99'
+					? '#22c55e'
 					: itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0');
 			ctx.moveTo(centerX, centerY);
 			ctx.arc(centerX, centerY, radius, startAngle, endAngle);
@@ -130,84 +123,32 @@ const SpinningWheel = ({
 				const image = new Image();
 				image.src = items[i].src;
 
-				const aspectRatio = image.width / image.height;
+				const imageWidth = radius * 0.4; // Adjust the image width as desired
+				const imageHeight = radius * 0.4; // Adjust the image height as desired
 
-				// Adjust the desired width and height for the images
-				const desiredImageWidth = radius * 0.45;
-				const desiredImageHeight = desiredImageWidth / aspectRatio;
+				const imageX = -imageWidth / 2 + imageXOffset; // Position the image in the center horizontally
+				const imageY = -imageHeight / 2 - imageYOffset; // Position the image in the center vertically
 
-				const imageX = -desiredImageWidth / 2 + imageXOffset;
-				const imageY = -desiredImageHeight / 2 - imageYOffset;
-
-				ctx.drawImage(
-					image,
-					imageX,
-					imageY,
-					desiredImageWidth,
-					desiredImageHeight
-				);
+				ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);
 			}
 
 			ctx.restore();
 		}
 
 		const buttonSize = radius * spinButtonSize;
-		ctx.fillStyle = '#081c15';
+		ctx.fillStyle = '#22c55e';
 		ctx.beginPath();
 		ctx.arc(centerX, centerY, buttonSize, 0, 2 * Math.PI);
 		ctx.fill();
 
-		const triangleSize = buttonSize * 0.9; // Adjust the triangle size as needed
-
-		// Calculate the angle between the center of the spin button and the selected item
-		let triangleRotationAngle = 0;
-		let triangleX = centerX;
-		let triangleY = centerY - buttonSize - triangleSize / 2 + 15; // Initial position at the top of the spin button
-
-		if (selectedItem) {
-			const selectedItemIndex = items.findIndex(
-				(item) => item.value === selectedItem
-			);
-			const selectedItemAngle =
-				rotationAngle + selectedItemIndex * angle + angle / 2;
-			const angleToCenter = Math.atan2(centerY, centerX);
-			triangleRotationAngle = selectedItemAngle - angleToCenter;
-
-			// Calculate the position of the triangle based on the selected item's angle
-			const triangleRadius = buttonSize - triangleSize / 5; // Adjusted radius to keep the triangle within the spin button
-			triangleX = centerX + triangleRadius * Math.cos(selectedItemAngle) - 2;
-			triangleY = centerY + triangleRadius * Math.sin(selectedItemAngle);
-		}
-
-		// Draw the triangle on the spin button
-		ctx.save();
-		ctx.translate(triangleX, triangleY);
-		ctx.rotate(triangleRotationAngle);
-
-		ctx.beginPath();
-		ctx.moveTo(0, -triangleSize / 2); // Top point
-		ctx.lineTo(triangleSize / 2, triangleSize / 3); // Bottom right point
-		ctx.lineTo(-triangleSize / 2, triangleSize / 3); // Bottom left point
-		ctx.closePath();
-
-		ctx.fillStyle = '#081c15'; // White color for the triangle
-		ctx.fill();
-
-		ctx.strokeStyle = '#081c15'; // White color for the triangle border
-		ctx.lineWidth = 2;
-		ctx.stroke();
-
-		ctx.restore();
-
-		// Draw the "SPIN" text on the button
 		ctx.fillStyle = '#fff';
-		ctx.font = `bold ${isMobile ? '13px' : '22px'} Arial`;
+		ctx.font = `bold ${isMobile ? '13px' : '16px'} Arial`;
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 		ctx.fillText('SPIN', centerX, centerY);
 
-		const borderWidth = 5;
-		ctx.strokeStyle = '#081c15';
+		const borderWidth = 2;
+		ctx.strokeStyle = '#fff';
 		ctx.lineWidth = borderWidth;
 		ctx.beginPath();
 		ctx.arc(centerX, centerY, radius - borderWidth / 2, 0, 2 * Math.PI);
