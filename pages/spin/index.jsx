@@ -29,7 +29,7 @@ export default function Spinner() {
 			weight: 1,
 			src: '/assets/items/0_down_payment.png',
 		},
-		{ value: 'Thank You', weight: 1, src: '/assets/items/thank_you.png' },
+		{ value: 'Thank You', weight: 5, src: '/assets/items/thank_you.png' },
 		{
 			value: 'Infinix NOTE30 Business Backpack',
 			weight: 1,
@@ -69,7 +69,7 @@ export default function Spinner() {
 					<SpinningWheel
 						items={items}
 						itemColors={itemColors}
-						spinningDuration={3}
+						spinningDuration={8}
 						spinningSpeed={50}
 						width={mobile ? 375 : 600}
 						height={mobile ? 375 : 600}
