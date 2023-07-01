@@ -126,26 +126,39 @@ const SpinningWheel = ({
 			ctx.translate(centerX, centerY);
 			ctx.rotate(startAngle + angle / 2);
 
+			// if (imagesLoaded) {
+			// 	const image = new Image();
+			// 	image.src = items[i].src;
+
+			// 	const aspectRatio = image.width / image.height;
+
+			// 	// Adjust the desired width and height for the images
+			// 	const desiredImageWidth = radius * 0.45;
+			// 	const desiredImageHeight = desiredImageWidth / aspectRatio;
+
+			// 	const imageX = -desiredImageWidth / 2 + imageXOffset;
+			// 	const imageY = -desiredImageHeight / 2 - imageYOffset;
+
+			// 	ctx.drawImage(
+			// 		image,
+			// 		imageX,
+			// 		imageY,
+			// 		desiredImageWidth,
+			// 		desiredImageHeight
+			// 	);
+			// }
+
 			if (imagesLoaded) {
 				const image = new Image();
 				image.src = items[i].src;
 
-				const aspectRatio = image.width / image.height;
+				const imageWidth = radius * 0.4; // Adjust the image width as desired
+				const imageHeight = radius * 0.4; // Adjust the image height as desired
 
-				// Adjust the desired width and height for the images
-				const desiredImageWidth = radius * 0.4;
-				const desiredImageHeight = desiredImageWidth / aspectRatio;
+				const imageX = -imageWidth / 2 + imageXOffset; // Position the image in the center horizontally
+				const imageY = -imageHeight / 2 - imageYOffset; // Position the image in the center vertically
 
-				const imageX = -desiredImageWidth / 2 + imageXOffset;
-				const imageY = -desiredImageHeight / 2 - imageYOffset;
-
-				ctx.drawImage(
-					image,
-					imageX,
-					imageY,
-					desiredImageWidth,
-					desiredImageHeight
-				);
+				ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);
 			}
 
 			ctx.restore();
@@ -162,7 +175,7 @@ const SpinningWheel = ({
 		// Calculate the angle between the center of the spin button and the selected item
 		let triangleRotationAngle = 0;
 		let triangleX = centerX;
-		let triangleY = centerY - buttonSize - triangleSize / 2 + 10; // Initial position at the top of the spin button
+		let triangleY = centerY - buttonSize - triangleSize / 2 + 15; // Initial position at the top of the spin button
 
 		if (selectedItem) {
 			const selectedItemIndex = items.findIndex(
