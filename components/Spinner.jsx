@@ -91,8 +91,8 @@ const SpinningWheel = ({
 
 		const spinButtonSize = isMobile ? 0.17 : 0.15;
 
-		const imageXOffset = isMobile ? 120 : 185;
-		const imageYOffset = isMobile ? 5 : 5;
+		const imageXOffset = isMobile ? 115 : 190;
+		const imageYOffset = 5;
 
 		const radius = Math.min(canvas.width, canvas.height) / 2;
 		const centerX = canvas.width / 2;
@@ -226,7 +226,7 @@ const SpinningWheel = ({
 					width={width}
 					height={height}
 					onClick={spinWheel}
-					style={{ cursor: 'pointer', maxWidth: '100%' }} // Limit canvas width to fit the container
+					style={{ cursor: 'pointer' }}
 				/>
 			)}
 		</div>
