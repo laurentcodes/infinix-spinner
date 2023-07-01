@@ -126,39 +126,26 @@ const SpinningWheel = ({
 			ctx.translate(centerX, centerY);
 			ctx.rotate(startAngle + angle / 2);
 
-			// if (imagesLoaded) {
-			// 	const image = new Image();
-			// 	image.src = items[i].src;
-
-			// 	const aspectRatio = image.width / image.height;
-
-			// 	// Adjust the desired width and height for the images
-			// 	const desiredImageWidth = radius * 0.45;
-			// 	const desiredImageHeight = desiredImageWidth / aspectRatio;
-
-			// 	const imageX = -desiredImageWidth / 2 + imageXOffset;
-			// 	const imageY = -desiredImageHeight / 2 - imageYOffset;
-
-			// 	ctx.drawImage(
-			// 		image,
-			// 		imageX,
-			// 		imageY,
-			// 		desiredImageWidth,
-			// 		desiredImageHeight
-			// 	);
-			// }
-
 			if (imagesLoaded) {
 				const image = new Image();
 				image.src = items[i].src;
 
-				const imageWidth = radius * 0.4; // Adjust the image width as desired
-				const imageHeight = radius * 0.4; // Adjust the image height as desired
+				const aspectRatio = image.width / image.height;
 
-				const imageX = -imageWidth / 2 + imageXOffset; // Position the image in the center horizontally
-				const imageY = -imageHeight / 2 - imageYOffset; // Position the image in the center vertically
+				// Adjust the desired width and height for the images
+				const desiredImageWidth = radius * 0.45;
+				const desiredImageHeight = desiredImageWidth / aspectRatio;
 
-				ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);
+				const imageX = -desiredImageWidth / 2 + imageXOffset;
+				const imageY = -desiredImageHeight / 2 - imageYOffset;
+
+				ctx.drawImage(
+					image,
+					imageX,
+					imageY,
+					desiredImageWidth,
+					desiredImageHeight
+				);
 			}
 
 			ctx.restore();
