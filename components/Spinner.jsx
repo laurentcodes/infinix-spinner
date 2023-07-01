@@ -181,7 +181,7 @@ const SpinningWheel = ({
 			ctx.rotate(triangleRotationAngle);
 
 			ctx.beginPath();
-			ctx.moveTo(0, -triangleSize / 2); // Top point
+			ctx.moveTo(0, -triangleSize); // Top point
 			ctx.lineTo(triangleSize / 2, triangleSize / 3); // Bottom right point
 			ctx.lineTo(-triangleSize / 2, triangleSize / 3); // Bottom left point
 			ctx.closePath();

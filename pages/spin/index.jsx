@@ -29,16 +29,16 @@ export default function Spinner() {
 			weight: 1,
 			src: '/assets/items/0_down_payment.png',
 		},
-		{ value: 'Thank You', weight: 5, src: '/assets/items/thank_you.png' },
+		{ value: 'Thank You', weight: 20, src: '/assets/items/thank_you.png' },
 		{
 			value: 'Infinix NOTE30 Business Backpack',
-			weight: 1,
+			weight: 3,
 			src: '/assets/items/backpack.png',
 		},
-		{ value: '1000NGN AIRTIME', weight: 1, src: '/assets/items/airtime.png' },
+		{ value: '1000NGN AIRTIME', weight: 8, src: '/assets/items/airtime.png' },
 		{
 			value: 'Wireless Speaker Infinix XS01 Purple',
-			weight: 1,
+			weight: 2,
 			src: '/assets/items/wireless_speaker.png',
 		},
 	];
