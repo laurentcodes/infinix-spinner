@@ -90,6 +90,7 @@ const SpinningWheel = ({
 		const ctx = canvas.getContext('2d');
 
 		const spinButtonSize = isMobile ? 0.17 : 0.15;
+		const imageSize = isMobile ? 0.43 : 0.4;
 
 		const imageXOffset = isMobile ? 115 : 190;
 		const imageYOffset = 5;
@@ -133,7 +134,7 @@ const SpinningWheel = ({
 				const aspectRatio = image.width / image.height;
 
 				// Adjust the desired width and height for the images
-				const desiredImageWidth = radius * 0.4;
+				const desiredImageWidth = radius * imageSize;
 				const desiredImageHeight = desiredImageWidth / aspectRatio;
 
 				const imageX = -desiredImageWidth / 2 + imageXOffset;
