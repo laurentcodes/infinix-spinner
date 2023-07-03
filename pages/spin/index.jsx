@@ -98,6 +98,7 @@ export default function Spinner() {
 				show={openModal}
 				size='lg'
 				popup
+				position='center'
 				onClose={() => setOpenModal(false)}
 			>
 				<Modal.Header />
