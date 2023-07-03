@@ -228,22 +228,9 @@ const SpinningWheel = ({
 		ctx.stroke();
 	};
 
-	// useEffect(() => {
-	// 	drawWheel();
-	// }, [rotationAngle, selectedItem, imagesLoaded]);
-
 	useEffect(() => {
-		// Delay the execution of drawWheel to ensure images are loaded
-		const delay = isMobile ? 3000 : 0; // Adjust the delay time as needed for mobile devices
-
-		const timer = setTimeout(() => {
-			drawWheel();
-		}, delay);
-
-		return () => {
-			clearTimeout(timer);
-		};
-	}, [rotationAngle, selectedItem, imagesLoaded, isMobile]);
+		drawWheel();
+	}, [rotationAngle, selectedItem, imagesLoaded]);
 
 	return (
 		<div className='flex flex-col items-center'>
