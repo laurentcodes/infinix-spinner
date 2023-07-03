@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
+/* eslint-disable @next/next/no-img-element */
 
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -65,10 +65,7 @@ export default function Spinner() {
 				<h3 className='text-5xl font-bold uppercase'>Spin to Win</h3>
 			</div>
 
-			{console.log(mobile, 'mob')}
-			{console.log(mobile === null, 'mob2')}
-
-			{mobile !== null ? (
+			{mobile !== null && (
 				<div className='mb-12 flex flex-col items-center'>
 					<SpinningWheel
 						items={items}
@@ -89,8 +86,6 @@ export default function Spinner() {
 						</p>
 					)}
 				</div>
-			) : (
-				'loading...'
 			)}
 		</main>
 	);
