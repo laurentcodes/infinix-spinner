@@ -3,22 +3,24 @@
 
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import { Button, Modal } from 'flowbite-react';
+import ConfettiExplosion from 'react-confetti-explosion';
 
 import SpinningWheel from '@/components/Spinner';
 
 export default function Spinner() {
 	const router = useRouter();
+
 	const { email } = router.query;
 
-	// console.log(email);
-
 	if (email?.length < 1) {
-		console.log('hey');
 		window.location.search = '';
 	}
 
+	const [openModal, setOpenModal] = useState(false);
 	const [mobile, setMobile] = useState(null);
 	const [wonItem, setWonItem] = useState('');
+	const [isExploding, setIsExploding] = useState(false);
 
 	useEffect(() => {
 		const checkMobile = window.innerWidth <= 768;
@@ -51,6 +53,9 @@ export default function Spinner() {
 
 	const onFinished = (selectedItem) => {
 		// Custom logic to handle the selected item when spinning is complete
+		setIsExploding(true);
+		setOpenModal(true);
+
 		console.log('Chosen item:', selectedItem);
 		setWonItem(selectedItem);
 		// alert(selectedItem);
@@ -59,6 +64,15 @@ export default function Spinner() {
 
 	return (
 		<main className='h-screen md:h-full w-screen flex flex-col justify-start items-center bg-[#95d5b2]'>
+			{isExploding && (
+				<ConfettiExplosion
+					particleCount={350}
+					duration={10000}
+					zIndex={100}
+					force={6}
+				/>
+			)}
+
 			<div className='flex flex-col items-center mb-12'>
 				<img src={'/assets/infinix-logo.png'} alt='Infinix Logo' width={100} />
 
@@ -70,23 +84,42 @@ export default function Spinner() {
 					<SpinningWheel
 						items={items}
 						itemColors={itemColors}
-						spinningDuration={8}
+						spinningDuration={3}
 						spinningSpeed={50}
 						width={mobile ? 375 : 600}
 						height={mobile ? 375 : 600}
 						onFinished={onFinished}
 						isMobile={mobile}
 					/>
-
-					{wonItem && (
-						<p className='my-5 font-bold text-xl text-center uppercase'>
-							{wonItem === 'Thank You'
-								? 'Thanks for Participating!'
-								: `You have won: ${wonItem}`}
-						</p>
-					)}
 				</div>
 			)}
+
+			<Modal
+				show={openModal}
+				size='lg'
+				popup
+				onClose={() => setOpenModal(false)}
+			>
+				<Modal.Header />
+				<Modal.Body>
+					<div className='text-center'>
+						{wonItem && (
+							<p className='my-5 font-bold text-xl uppercase'>
+								{wonItem === 'Thank You'
+									? 'Thanks for Participating!'
+									: `You have won: ${wonItem}`}
+							</p>
+						)}
+
+						{wonItem !== 'Thank You' && (
+							<p>
+								An email with instructions on how to claim your winning will be
+								sent to you.
+							</p>
+						)}
+					</div>
+				</Modal.Body>
+			</Modal>
 		</main>
 	);
 }
