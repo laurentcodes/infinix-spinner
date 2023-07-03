@@ -232,17 +232,33 @@ const SpinningWheel = ({
 		drawWheel();
 	}, [rotationAngle, selectedItem, imagesLoaded]);
 
+	if (!imagesLoaded) {
+		// Return a loading indicator while the images are being loaded
+		return <div>Loading...</div>;
+	}
+
+	// return (
+	// 	<div className='flex flex-col items-center'>
+	// 		{imagesLoaded && (
+	// 			<canvas
+	// 				ref={canvasRef}
+	// 				width={width}
+	// 				height={height}
+	// 				onClick={spinWheel}
+	// 				style={{ cursor: 'pointer' }}
+	// 			/>
+	// 		)}
+	// 	</div>
+	// );
 	return (
 		<div className='flex flex-col items-center'>
-			{imagesLoaded && (
-				<canvas
-					ref={canvasRef}
-					width={width}
-					height={height}
-					onClick={spinWheel}
-					style={{ cursor: 'pointer' }}
-				/>
-			)}
+			<canvas
+				ref={canvasRef}
+				width={width}
+				height={height}
+				onClick={spinWheel}
+				style={{ cursor: 'pointer' }}
+			/>
 		</div>
 	);
 };
