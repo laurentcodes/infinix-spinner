@@ -25,13 +25,12 @@ export default function Home() {
 
 			<div className='flex flex-col items-center'>
 				<img
-					src={'/assets/infinix-logo.jpeg'}
+					src={'/assets/infinix-easybuy.png'}
 					alt='Infinix Logo'
-					width={200}
-					height={200}
+					width={300}
 				/>
 
-				<div className='w-80 md:w-96 flex flex-col'>
+				<div className='w-80 md:w-96 flex flex-col mt-12'>
 					<TextInput
 						className='mb-2'
 						id='email1'

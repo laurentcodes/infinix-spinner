@@ -74,7 +74,12 @@ export default function Spinner() {
 			)}
 
 			<div className='flex flex-col items-center mb-12'>
-				<img src={'/assets/infinix-logo.png'} alt='Infinix Logo' width={100} />
+				<img
+					src={'/assets/infinix-easybuy.png'}
+					alt='Infinix Logo'
+					width={300}
+					className='my-12'
+				/>
 
 				<h3 className='text-5xl font-bold uppercase'>Spin to Win</h3>
 			</div>
