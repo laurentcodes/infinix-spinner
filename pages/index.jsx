@@ -1,9 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { TextInput } from 'flowbite-react';
-import Image from 'next/image';
 import { z } from 'zod';
 
 import screenshot from '../public/assets/screenshot.png';

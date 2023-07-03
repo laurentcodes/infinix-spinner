@@ -1,12 +1,14 @@
 'use client';
-/* eslint-disable @next/next/no-img-element */
 
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Button, Modal } from 'flowbite-react';
 import ConfettiExplosion from 'react-confetti-explosion';
 
 import SpinningWheel from '@/components/Spinner';
+
+import infinix_easybuy from '../../public/assets/infinix-easybuy.png';
 
 export default function Spinner() {
 	const router = useRouter();
@@ -77,8 +79,8 @@ export default function Spinner() {
 			)}
 
 			<div className='flex flex-col items-center mb-12'>
-				<img
-					src={'/assets/infinix-easybuy.png'}
+				<Image
+					src={infinix_easybuy}
 					alt='Infinix Logo'
 					width={300}
 					className='my-12'
