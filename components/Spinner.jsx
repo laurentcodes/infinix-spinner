@@ -69,16 +69,16 @@ const SpinningWheel = ({
 		});
 	};
 
-	useEffect(() => {
-		const loadImages = async () => {
-			try {
-				await Promise.all(items.map((item) => loadImage(item.src)));
-				setImagesLoaded(true);
-			} catch (error) {
-				console.error('Error loading images:', error);
-			}
-		};
+	const loadImages = async () => {
+		try {
+			await Promise.all(items.map((item) => loadImage(item.src)));
+			setImagesLoaded(true);
+		} catch (error) {
+			console.error('Error loading images:', error);
+		}
+	};
 
+	useEffect(() => {
 		loadImages();
 	}, []);
 
