@@ -85,7 +85,7 @@ const SpinningWheel = ({
 	const drawWheel = () => {
 		const canvas = canvasRef.current;
 
-		if (!canvas) {
+		if (!canvas || !imagesLoaded) {
 			return; // Return early if canvas is not available
 		}
 
@@ -231,13 +231,6 @@ const SpinningWheel = ({
 	useEffect(() => {
 		drawWheel();
 	}, [rotationAngle, selectedItem, imagesLoaded]);
-
-	useEffect(() => {
-		// Redraw the wheel when the component mounts or images are loaded
-		if (imagesLoaded) {
-			drawWheel();
-		}
-	}, [imagesLoaded]);
 
 	return (
 		<div className='flex flex-col items-center'>
