@@ -84,7 +84,7 @@ export default function Spinner() {
 					<SpinningWheel
 						items={items}
 						itemColors={itemColors}
-						spinningDuration={3}
+						spinningDuration={8}
 						spinningSpeed={50}
 						width={mobile ? 375 : 600}
 						height={mobile ? 375 : 600}
