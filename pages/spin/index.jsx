@@ -60,9 +60,9 @@ export default function Spinner() {
 	return (
 		<main className='h-screen md:h-full w-screen flex flex-col justify-start items-center bg-[#95d5b2]'>
 			<div className='flex flex-col items-center mb-12'>
-				<img src={'/assets/infinix-logo.png'} alt='Infinix Logo' width={200} />
+				<img src={'/assets/infinix-logo.png'} alt='Infinix Logo' width={100} />
 
-				<h3 className='text-4xl font-bold uppercase'>Spin to Win</h3>
+				<h3 className='text-5xl font-bold uppercase'>Spin to Win</h3>
 			</div>
 
 			{mobile !== null && (
