@@ -65,28 +65,41 @@ export default function Spinner() {
 				<h3 className='text-5xl font-bold uppercase'>Spin to Win</h3>
 			</div>
 
-			{mobile !== null && (
-				<div className='mb-12 flex flex-col items-center'>
+			<div className='mb-12 flex flex-col items-center'>
+				<div className='hidden md:block'>
 					<SpinningWheel
 						items={items}
 						itemColors={itemColors}
 						spinningDuration={8}
 						spinningSpeed={50}
-						width={mobile ? 375 : 600}
-						height={mobile ? 375 : 600}
+						width={600}
+						height={600}
 						onFinished={onFinished}
 						isMobile={mobile}
 					/>
-
-					{wonItem && (
-						<p className='my-5 font-bold text-xl text-center uppercase'>
-							{wonItem === 'Thank You'
-								? 'Thanks for Participating!'
-								: `You have won: ${wonItem}`}
-						</p>
-					)}
 				</div>
-			)}
+
+				<div className='block md:hidden'>
+					<SpinningWheel
+						items={items}
+						itemColors={itemColors}
+						spinningDuration={8}
+						spinningSpeed={50}
+						width={375}
+						height={375}
+						onFinished={onFinished}
+						isMobile={mobile}
+					/>
+				</div>
+
+				{wonItem && (
+					<p className='my-5 font-bold text-xl text-center uppercase'>
+						{wonItem === 'Thank You'
+							? 'Thanks for Participating!'
+							: `You have won: ${wonItem}`}
+					</p>
+				)}
+			</div>
 		</main>
 	);
 }
