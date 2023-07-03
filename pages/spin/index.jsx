@@ -63,7 +63,10 @@ export default function Spinner() {
 	};
 
 	return (
-		<main className='h-screen md:h-full w-screen flex flex-col justify-start items-center bg-[#95d5b2]'>
+		<main
+			className='h-screen md:h-full w-screen flex flex-col justify-start items-center bg-cover'
+			style={{ backgroundImage: `url('/assets/background.png')` }}
+		>
 			{isExploding && (
 				<ConfettiExplosion
 					particleCount={350}
@@ -120,12 +123,40 @@ export default function Spinner() {
 							</p>
 						)}
 
-						{wonItem !== 'Thank You' && (
+						{wonItem === '0 Naira Down Payment' && (
+							<p>
+								You&apos;ve won big in our live spin! Check your email for the
+								exciting details.{' '}
+							</p>
+						)}
+
+						{wonItem === 'Infinix NOTE30 Business Backpack' && (
+							<p>
+								Your lucky stars have aligned! You&apos;re the proud winner of
+								our live spin competition Let the celebration begin!
+							</p>
+						)}
+
+						{wonItem === '1000NGN AIRTIME' && (
+							<p>
+								Drumrolls please! You&apos;re the fortunate winner of our live
+								spin. Let the celebration begin!
+							</p>
+						)}
+
+						{wonItem === 'Wireless Speaker Infinix XS01 Purple' && (
+							<p>
+								Drumrolls please! You&apos;re the fortunate winner of our live
+								spin. Let the celebration begin!
+							</p>
+						)}
+
+						{/* {wonItem !== 'Thank You' && (
 							<p>
 								An email with instructions on how to claim your winning will be
 								sent to you.
 							</p>
-						)}
+						)} */}
 					</div>
 				</Modal.Body>
 			</Modal>

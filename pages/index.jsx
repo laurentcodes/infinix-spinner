@@ -12,7 +12,10 @@ export default function Home() {
 	const [phone, setPhone] = useState(null);
 
 	return (
-		<main className='h-screen p-5 flex flex-col md:flex-row justify-evenly items-center overflow-hidden'>
+		<main
+			className='h-screen p-5 flex flex-col md:flex-row justify-evenly items-center overflow-hidden bg-cover'
+			style={{ backgroundImage: `url('/assets/background.png')` }}
+		>
 			<div className='flex flex-col items-center'>
 				<h4 className='font-bold text-3xl'>Try Your Luck</h4>
 
