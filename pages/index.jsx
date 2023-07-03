@@ -49,6 +49,7 @@ export default function Home() {
 					src='/assets/screenshot.png'
 					alt='Screenshot of Spinner'
 					width={450}
+					style={{ fontSize: 0 }}
 				/>
 			</div>
 
