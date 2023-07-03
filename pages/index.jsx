@@ -1,10 +1,13 @@
 'use client';
-/* eslint-disable @next/next/no-img-element */
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { TextInput } from 'flowbite-react';
+import Image from 'next/image';
 import { z } from 'zod';
+
+import screenshot from '../public/assets/screenshot.png';
+import infinix_easybuy from '../public/assets/infinix-easybuy.png';
 
 export default function Home() {
 	const router = useRouter();
@@ -45,20 +48,11 @@ export default function Home() {
 			<div className='flex flex-col items-center'>
 				<h4 className='font-bold text-3xl'>Try Your Luck</h4>
 
-				<img
-					src='/assets/screenshot.png'
-					alt='Screenshot of Spinner'
-					width={450}
-					style={{ fontSize: 0 }}
-				/>
+				<Image src={screenshot} alt='Screenshot of Spinner' width={450} />
 			</div>
 
 			<div className='flex flex-col items-center'>
-				<img
-					src={'/assets/infinix-easybuy.png'}
-					alt='Infinix Logo'
-					width={300}
-				/>
+				<Image src={infinix_easybuy} alt='Infinix Logo' width={300} />
 
 				<form className='w-80 md:w-96 flex flex-col mt-12'>
 					<TextInput
