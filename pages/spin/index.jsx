@@ -99,7 +99,10 @@ export default function Spinner() {
 				size='lg'
 				popup
 				position='center'
-				onClose={() => setOpenModal(false)}
+				onClose={() => {
+					setOpenModal(false);
+					router.push('/');
+				}}
 			>
 				<Modal.Header />
 				<Modal.Body>
