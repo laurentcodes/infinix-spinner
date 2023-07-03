@@ -3,13 +3,39 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { TextInput, Button } from 'flowbite-react';
+import { TextInput } from 'flowbite-react';
+import { z } from 'zod';
 
 export default function Home() {
 	const router = useRouter();
 
+	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
-	const [phone, setPhone] = useState(null);
+	const [phone, setPhone] = useState('');
+	const [errors, setErrors] = useState([]);
+
+	const User = z.object({
+		name: z.string().nonempty({ message: 'Enter your name' }),
+		email: z.string().email({ message: 'Invalid email address' }),
+		phone: z
+			.string({ message: 'Invalid phone number' })
+			.min(11, { message: 'Invalid phone number' })
+			.max(11, { message: 'Invalid phone number' }),
+	});
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		try {
+			User.parse({ name, email, phone });
+
+			router.push(`/spin?name=${name}&email=${email}&phone=${phone}`);
+		} catch (err) {
+			if (err instanceof z.ZodError) {
+				setErrors(err.issues);
+			}
+		}
+	};
 
 	return (
 		<main
@@ -33,7 +59,17 @@ export default function Home() {
 					width={300}
 				/>
 
-				<div className='w-80 md:w-96 flex flex-col mt-12'>
+				<form className='w-80 md:w-96 flex flex-col mt-12'>
+					<TextInput
+						className='mb-2'
+						id='name'
+						placeholder='Enter Name'
+						required
+						type='text'
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
+
 					<TextInput
 						className='mb-2'
 						id='email1'
@@ -49,18 +85,27 @@ export default function Home() {
 						id='phone'
 						placeholder='Enter Phone Number'
 						required
-						type='number'
+						type='text'
 						value={phone}
 						onChange={(e) => setPhone(e.target.value)}
 					/>
 
+					<p>
+						{errors.length > 0 &&
+							errors.map((error) => (
+								<span className='text-red-500 block' key={error.path[0]}>
+									{error.message}
+								</span>
+							))}
+					</p>
+
 					<button
 						className='p-2 mt-3 bg-green-400 rounded-lg w-full text-white uppercase'
-						onClick={() => router.push(`/spin?email=${email}&phone=${phone}`)}
+						onClick={handleSubmit}
 					>
 						Continue to Spin
 					</button>
-				</div>
+				</form>
 			</div>
 		</main>
 	);
