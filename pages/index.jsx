@@ -17,7 +17,6 @@ export default function Home() {
 	useEffect(() => {
 		scheduleCRON()
 			.then((res) => {
-				console.log(res);
 				if (res.status === 200) {
 					console.log(res.message, res.time);
 				}
