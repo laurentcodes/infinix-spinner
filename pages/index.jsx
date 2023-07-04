@@ -2,15 +2,27 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TextInput } from 'flowbite-react';
 import { z } from 'zod';
+
+import { scheduleCRON } from './api/services';
 
 import screenshot from '../public/assets/screenshot.png';
 import infinix_easybuy from '../public/assets/infinix-easybuy.png';
 
 export default function Home() {
 	const router = useRouter();
+
+	useEffect(() => {
+		scheduleCRON()
+			.then((res) => {
+				if (res.status === 200) {
+					console.log(res.message, res.time);
+				}
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -32,7 +44,13 @@ export default function Home() {
 		try {
 			User.parse({ name, email, phone });
 
-			router.push(`/spin?name=${name}&email=${email}&phone=${phone}`);
+			router.push(
+				{
+					pathname: '/spin',
+					query: { name, email, phone },
+				},
+				'/spin'
+			);
 		} catch (err) {
 			if (err instanceof z.ZodError) {
 				setErrors(err.issues);

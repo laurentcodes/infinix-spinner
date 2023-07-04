@@ -27,18 +27,20 @@ const SpinningWheel = ({
 
 		let accumulatedWeight = 0;
 		let selectedItemValue = null;
+		let selectedItemId = null;
 
 		for (const item of items) {
 			accumulatedWeight += item.weight;
+			selectedItemId = item._id;
 
 			if (weightedRandom <= accumulatedWeight) {
-				selectedItemValue = item.value;
+				selectedItemValue = item.name;
 				break;
 			}
 		}
 
 		const randomIndex = items.findIndex(
-			(item) => item.value === selectedItemValue
+			(item) => item.name === selectedItemValue
 		);
 
 		const targetAngle =
@@ -53,7 +55,7 @@ const SpinningWheel = ({
 				clearInterval(spinInterval);
 				setIsSpinning(false);
 				setSelectedItem(selectedItemValue);
-				onFinished(selectedItemValue); // Call the onFinished function with the selected item
+				onFinished({ id: selectedItemId, name: selectedItemValue }); // Call the onFinished function with the selected item
 			}
 
 			setRotationAngle(currentAngle);
@@ -117,7 +119,7 @@ const SpinningWheel = ({
 
 			ctx.beginPath();
 			ctx.fillStyle =
-				selectedItem === items[i].value
+				selectedItem === items[i].name
 					? '#80ed99'
 					: itemColors[i] || (i % 2 === 0 ? '#FFFFFF' : '#F0F0F0');
 			ctx.moveTo(centerX, centerY);
@@ -165,7 +167,7 @@ const SpinningWheel = ({
 
 			// Calculate the angle between the center of the spin button and the selected item
 			const selectedItemIndex = items.findIndex(
-				(item) => item.value === selectedItem
+				(item) => item.name === selectedItem
 			);
 			const selectedItemAngle =
 				rotationAngle + selectedItemIndex * angle + angle / 2;

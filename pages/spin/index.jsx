@@ -3,21 +3,22 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { Button, Modal } from 'flowbite-react';
+import { Modal } from 'flowbite-react';
 import ConfettiExplosion from 'react-confetti-explosion';
+import { toast } from 'react-toastify';
 
 import SpinningWheel from '@/components/Spinner';
+
+import { getItems, signUp } from '../api/services';
 
 import infinix_easybuy from '../../public/assets/infinix-easybuy.png';
 
 export default function Spinner() {
 	const router = useRouter();
 
-	const { email } = router.query;
+	const { name, email, phone } = router.query;
 
-	if (email?.length < 1) {
-		window.location.search = '';
-	}
+	const [items, setItems] = useState([]);
 
 	const [openModal, setOpenModal] = useState(false);
 	const [mobile, setMobile] = useState(null);
@@ -27,42 +28,45 @@ export default function Spinner() {
 	useEffect(() => {
 		const checkMobile = window.innerWidth <= 768;
 		setMobile(checkMobile);
-	}, []);
 
-	const items = [
-		{
-			value: '0 Naira Down Payment',
-			weight: 1,
-			src: '/assets/items/0_down_payment.png',
-		},
-		{ value: 'Thank You', weight: 30, src: '/assets/items/thank_you.png' },
-		{
-			value: 'Infinix NOTE30 Business Backpack',
-			weight: 5,
-			src: '/assets/items/backpack.png',
-		},
-		{ value: '1000NGN AIRTIME', weight: 15, src: '/assets/items/airtime.png' },
-		{
-			value: 'Wireless Speaker Infinix XS01 Purple',
-			weight: 2,
-			src: '/assets/items/wireless_speaker.png',
-		},
-	];
+		getItems().then((res) => setItems(res.data));
+	}, []);
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
 	// const itemColors = ['#d8f3dc', '#40916c', '#95d5b2', '#d8f3dc', '#95d5b2'];
 	const itemColors = ['#61a5c2', '#2a6f97', '#1b4332', '#52b788', '#014f86'];
 
 	const onFinished = (selectedItem) => {
-		// Custom logic to handle the selected item when spinning is complete
-		setIsExploding(true);
-		setOpenModal(true);
+		const data = { name, email, phone, itemWon: selectedItem.id };
 
-		console.log('Chosen item:', selectedItem);
-		setWonItem(selectedItem);
-		// alert(selectedItem);
-		// ... Additional actions
+		signUp(data)
+			.then((res) => {
+				if (res.status === 201) {
+					// Custom logic to handle the selected item when spinning is complete
+					setIsExploding(true);
+					setOpenModal(true);
+					setWonItem(selectedItem.name);
+				}
+			})
+			.catch((err) => {
+				toast(err.response.data.message, {
+					autoClose: 2000,
+					type: 'error',
+				});
+
+				setTimeout(() => {
+					router.push('/');
+				}, 2500);
+			});
 	};
+
+	if (items.length === 0) {
+		return (
+			<span className='flex w-screen h-screen items-center justify-center'>
+				<span class='animate-ping absolute h-16 w-16 rounded-full bg-green-400'></span>
+			</span>
+		);
+	}
 
 	return (
 		<main
