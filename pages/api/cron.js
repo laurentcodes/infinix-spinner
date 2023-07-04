@@ -16,10 +16,10 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 0 });
 	// });
 
-	cron.schedule('*/5 * * * * *', async () => {
+	cron.schedule('*/5 * * * * *', () => {
 		console.log('Running every 5 seconds lau.');
 
-		await Item.updateMany({}, { count: 0, totalCount: 0 });
+		Item.updateMany({}, { count: 0, totalCount: 0 });
 	});
 
 	// Send a response to the client
