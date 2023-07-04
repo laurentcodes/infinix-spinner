@@ -17,11 +17,18 @@ const handler = async (req, res) => {
 	// });
 
 	if (connectRes.status === 200) {
-		cron.schedule('*/3 * * * * *', async () => {
-			console.log('Running every 3 seconds lau.');
-			const items = await Item.updateMany({}, { count: 15, totalCount: 15 });
-			items.save();
-		});
+		cron.schedule(
+			'*/3 * * * * *',
+			async () => {
+				console.log('Running every 3 seconds lau.');
+				const items = await Item.updateMany({}, { count: 15, totalCount: 15 });
+				items.save();
+			},
+			{
+				scheduled: true,
+				timezone: 'Africa/Lagos',
+			}
+		);
 	}
 
 	// Send a response to the client
