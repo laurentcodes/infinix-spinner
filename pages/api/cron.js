@@ -22,8 +22,8 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 50, totalCount: 50 });
 	// });
 
-	cron.schedule('*/2 * * * *', async () => {
-		console.log('Running every 2 minutes.');
+	cron.schedule('*/1 * * * *', async () => {
+		console.log('Running every 1 minutes.');
 
 		await Item.updateMany({}, { count: 510, totalCount: 510 });
 	});
