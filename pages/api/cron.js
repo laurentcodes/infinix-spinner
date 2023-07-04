@@ -8,6 +8,11 @@ const Item = require('./models/Item');
 connectDB();
 
 const handler = async (req, res) => {
+	const cronExpression = '*/10 * * * * *'; // Your desired cron expression, adjusted for the time zone
+	const timezoneOffset = '-01:00'; // Time zone offset for the desired time zone
+
+	const adjustedCronExpression = `${cronExpression} ${timezoneOffset}`;
+
 	// Define cron job here
 	// cron.schedule('0 0 * * *', async () => {
 	// 	// Run at 00:00 every day
@@ -22,18 +27,11 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 50, totalCount: 50 });
 	// });
 
-	cron.schedule(
-		'*/10 * * * * *',
-		async () => {
-			console.log('Running every 10 seconds.');
+	cron.schedule(adjustedCronExpression, async () => {
+		console.log('Running every 10 seconds.');
 
-			await Item.updateMany({}, { count: 25, totalCount: 25 });
-		},
-		{
-			scheduled: true,
-			timezone: 'UTC',
-		}
-	);
+		await Item.updateMany({}, { count: 25, totalCount: 25 });
+	});
 
 	// Send a response to the client
 	res.status(200).json({
