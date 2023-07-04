@@ -1,6 +1,6 @@
 const connectDB = require('../../config/db');
 
-import cron from 'node-cron';
+const cron = require('node-cron');
 
 const Item = require('./models/Item');
 
@@ -16,10 +16,12 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 0 });
 	// });
 
-	cron.schedule('*/5 * * * * *', () => {
+	cron.schedule('*/5 * * * * *', async () => {
 		console.log('Running every 5 seconds lau.');
 
-		Item.updateMany({}, { count: 0, totalCount: 0 });
+		const items = await Item.updateMany({}, { count: 0, totalCount: 0 });
+
+		items.save();
 	});
 
 	// Send a response to the client
