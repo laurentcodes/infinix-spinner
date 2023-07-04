@@ -9,7 +9,7 @@ connectDB();
 
 const handler = async (req, res) => {
 	const cronExpression = '*/10 * * * * *'; // Your desired cron expression, adjusted for the time zone
-	const timezoneOffset = '-01:00'; // Time zone offset for the desired time zone
+	const timezoneOffset = '+00:00'; // Time zone offset for the desired time zone
 
 	const adjustedCronExpression = `${cronExpression} ${timezoneOffset}`;
 
