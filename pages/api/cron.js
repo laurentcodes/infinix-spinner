@@ -27,7 +27,7 @@ const handler = async (req, res) => {
 		async () => {
 			console.log('Running every 10 seconds.');
 
-			await Item.updateMany({}, { count: 130, totalCount: 130 });
+			await Item.updateMany({}, { count: 25, totalCount: 25 });
 		},
 		{
 			scheduled: true,
