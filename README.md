@@ -1,3 +1,3 @@
 # Spinner
 
-Wheel Spinner for Infinix
+Wheel Spinner for Infinix Promotion
