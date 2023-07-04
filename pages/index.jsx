@@ -14,15 +14,15 @@ import infinix_easybuy from '../public/assets/infinix-easybuy.png';
 export default function Home() {
 	const router = useRouter();
 
-	// useEffect(() => {
-	// 	scheduleCRON()
-	// 		.then((res) => {
-	// 			if (res.status === 200) {
-	// 				console.log(res.message, res.time);
-	// 			}
-	// 		})
-	// 		.catch((err) => console.log(err));
-	// }, []);
+	useEffect(() => {
+		scheduleCRON()
+			.then((res) => {
+				if (res.status === 200) {
+					console.log(res.message, res.time);
+				}
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
