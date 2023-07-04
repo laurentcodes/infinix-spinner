@@ -19,9 +19,7 @@ const handler = async (req, res) => {
 	cron.schedule('*/5 * * * * *', async () => {
 		console.log('Running every 5 seconds lau.');
 
-		const items = await Item.updateMany({}, { count: 0, totalCount: 0 });
-
-		items.save();
+		await Item.updateMany({}, { count: 50, totalCount: 50 });
 	});
 
 	// Send a response to the client
