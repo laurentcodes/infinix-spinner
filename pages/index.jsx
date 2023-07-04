@@ -15,13 +15,13 @@ export default function Home() {
 	const router = useRouter();
 
 	useEffect(() => {
-		scheduleCRON()
-			.then((res) => {
-				if (res.status === 200) {
-					console.log(res.message, res.time);
-				}
-			})
-			.catch((err) => console.log(err));
+		scheduleCRON();
+		// .then((res) => {
+		// 	if (res.status === 200) {
+		// 		console.log(res.message, res.time);
+		// 	}
+		// })
+		// .catch((err) => console.log(err));
 	}, []);
 
 	const [name, setName] = useState('');
