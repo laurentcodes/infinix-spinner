@@ -4,6 +4,9 @@ const cron = require('node-cron');
 
 const Item = require('./models/Item');
 
+// Connect database
+const connectRes = await connectDB();
+
 const handler = async (req, res) => {
 	// Define cron job here
 	// cron.schedule('0 0 * * *', async () => {
@@ -13,16 +16,13 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 0 });
 	// });
 
-	// Connect database
-	connectDB().then(
+	if (connectRes.status === 200) {
 		cron.schedule('*/3 * * * * *', async () => {
 			console.log('Running every 3 seconds lau.');
-
-			const items = await Item.updateMany({}, { count: 0, totalCount: 0 });
-
+			const items = await Item.updateMany({}, { count: 15, totalCount: 15 });
 			items.save();
-		})
-	);
+		});
+	}
 
 	// Send a response to the client
 	res.status(200).json({
