@@ -8,19 +8,19 @@ const Item = require('./models/Item');
 const connectRes = await connectDB();
 
 const handler = async (req, res) => {
-	// Define cron job here
-	// cron.schedule('0 0 * * *', async () => {
-	// 	// Run at 00:00 every day
-	// 	console.log('Running myFunction at 00:00 every day.');
+	// cron.schedule('*/5 * * * * *', async () => {
+	// 	console.log('Running every 5 seconds lau.');
 
-	// 	await Item.updateMany({}, { count: 0 });
+	// 	await Item.updateMany({}, { count: 1 - 1, totalCount: 1 - 1 });
 	// });
 
 	if (connectRes.status === 200) {
-		cron.schedule('*/5 * * * * *', async () => {
-			console.log('Running every 5 seconds lau.');
+		// Define cron job here
+		cron.schedule('0 0 * * *', async () => {
+			// Run at 00:00 every day
+			console.log('Running at 00:00 every day.');
 
-			await Item.updateMany({}, { count: 1 - 1, totalCount: 1 - 1 });
+			await Item.updateMany({}, { count: 1 - 1 });
 		});
 
 		// Send a response to the client
