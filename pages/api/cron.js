@@ -22,17 +22,24 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 50, totalCount: 50 });
 	// });
 
-	cron.schedule('*/10 * * * * *', async () => {
-		console.log('Running every 10 seconds.');
+	cron.schedule(
+		'*/10 * * * * *',
+		async () => {
+			console.log('Running every 10 seconds.');
 
-		await Item.updateMany({}, { count: 30, totalCount: 30 });
-	});
+			await Item.updateMany({}, { count: 30, totalCount: 30 });
+		},
+		{
+			scheduled: true,
+			timezone: 'UTC',
+		}
+	);
 
 	// Send a response to the client
 	res.status(200).json({
 		message: 'Cron job scheduled successfully.',
 		status: 200,
-		time: new Date().toTimeString(),
+		time: new Date().toISOString(),
 	});
 };
 
