@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 import SpinningWheel from '@/components/Spinner';
 
-import { getItems, signUp } from '../api/services';
+import { getItems, signUp, scheduleCRON } from '../api/services';
 
 import infinix_easybuy from '../../public/assets/infinix-easybuy.png';
 
@@ -30,6 +30,8 @@ export default function Spinner() {
 		setMobile(checkMobile);
 
 		getItems().then((res) => setItems(res.data));
+
+		scheduleCRON();
 	}, []);
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];

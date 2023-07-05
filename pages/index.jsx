@@ -14,10 +14,6 @@ import infinix_easybuy from '../public/assets/infinix-easybuy.png';
 export default function Home() {
 	const router = useRouter();
 
-	useEffect(() => {
-		scheduleCRON();
-	}, []);
-
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [phone, setPhone] = useState('');
