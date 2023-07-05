@@ -16,11 +16,18 @@ const handler = async (req, res) => {
 
 	if (connectRes.status === 200) {
 		// Define cron job here
-		cron.schedule('0 6 * * *', async () => {
-			// Run at 00:00 every day
-			console.log('Running at 00:00 every day.');
+		// cron.schedule('0 0 * * *', async () => {
+		// 	// Run at 00:00 every day
+		// 	console.log('Running at 00:00 every day.');
 
-			await Item.updateMany({}, { count: 1 - 1 });
+		// 	await Item.updateMany({}, { count: 1 - 1 });
+		// });
+
+		cron.schedule('48 7 * * *', async () => {
+			// Run at 00:00 every day
+			console.log('Running at 07:45 every day.');
+
+			await Item.updateMany({}, { count: 15, totalCount: 24 });
 		});
 
 		// Send a response to the client
