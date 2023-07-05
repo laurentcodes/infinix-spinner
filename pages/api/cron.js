@@ -23,10 +23,10 @@ const handler = async (req, res) => {
 		// 	await Item.updateMany({}, { count: 1 - 1 });
 		// });
 
-		cron.schedule('*/2 * * * *', async () => {
-			console.log('Running every 2 minutes lau.');
+		cron.schedule('*/5 * * * * *', async () => {
+			console.log('Running every 5 seconds lau.');
 
-			await Item.updateMany({}, { count: 15, totalCount: 24 });
+			await Item.updateMany({}, { count: 123, totalCount: 124 });
 		});
 
 		// cron.schedule('0 0 */23 * *', async () => {
