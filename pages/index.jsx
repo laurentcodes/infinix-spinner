@@ -50,16 +50,16 @@ export default function Home() {
 
 	return (
 		<main
-			className='h-screen p-5 flex flex-col md:flex-row justify-evenly items-center overflow-hidden bg-cover'
-			style={{ backgroundImage: `url('/assets/background.png')` }}
+			className='h-screen p-5 flex flex-col md:flex-row justify-center items-center md:items-end overflow-hidden bg-cover'
+			style={{ backgroundImage: `url('/assets/background_new.png')` }}
 		>
 			<div className='flex flex-col items-center'>
-				<h4 className='font-bold text-3xl'>Try Your Luck</h4>
+				{/* <h4 className='font-bold text-3xl'>Try Your Luck</h4> */}
 
 				<Image src={screenshot} alt='Screenshot of Spinner' width={450} />
 			</div>
 
-			<div className='flex flex-col items-center'>
+			<div className='flex flex-col items-center mb-[80px]'>
 				<Image src={infinix_easybuy} alt='Infinix Logo' width={300} />
 
 				<form className='w-80 md:w-96 flex flex-col mt-12'>

@@ -19,6 +19,8 @@ const handler = async (req, res) => {
 	}
 
 	// Send a response to the client
+	console.log('CRON SCHEDULED');
+
 	res.status(200).json({
 		message: 'Cron job scheduled successfully.',
 		status: 200,
