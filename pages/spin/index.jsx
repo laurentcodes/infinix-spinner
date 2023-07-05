@@ -31,10 +31,10 @@ export default function Spinner() {
 		setMobile(checkMobile);
 
 		getItems().then((res) => setItems(res.data));
+	}, []);
 
-		setTimeout(() => {
-			scheduleCRON();
-		}, 3000);
+	useEffect(() => {
+		scheduleCRON();
 	}, []);
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
