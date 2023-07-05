@@ -18,8 +18,6 @@ const connectDB = async () => {
 
 		connection.isConnected = db.connections[0].readyState;
 
-		console.log('MongoDB connected');
-
 		return {
 			message: 'MongoDB Connected',
 			status: 200,

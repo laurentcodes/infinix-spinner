@@ -29,20 +29,20 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 15, totalCount: 24 });
 	// });
 
-	if (connectRes.connected === 2) {
+	if (connectRes.connected === 1) {
 		cron.schedule('*/5 * * * * *', async () => {
 			console.log('Running every 5 seconds lau.');
 
-			await Item.updateMany({}, { count: 656, totalCount: 656 });
-		});
-
-		// Send a response to the client
-		res.status(200).json({
-			message: 'Cron job scheduled successfully.',
-			status: 200,
-			time: new Date().toISOString(),
+			await Item.updateMany({}, { count: 23, totalCount: 23 });
 		});
 	}
+
+	// Send a response to the client
+	res.status(200).json({
+		message: 'Cron job scheduled successfully.',
+		status: 200,
+		time: new Date().toISOString(),
+	});
 };
 
 export default handler;
