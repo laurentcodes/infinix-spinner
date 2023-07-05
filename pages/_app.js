@@ -14,6 +14,7 @@ export default function App({ Component, pageProps }) {
 					rel='stylesheet'
 					href='https://unpkg.com/flowbite@1.3.3/dist/flowbite.min.css'
 				/>
+				<meta name='theme-color' content='#6c8ecc'></meta>
 			</Head>
 			<Component {...pageProps} />
 			<ToastContainer />
