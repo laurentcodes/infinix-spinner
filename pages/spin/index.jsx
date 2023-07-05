@@ -18,6 +18,7 @@ export default function Spinner() {
 
 	const { name, email, phone } = router.query;
 
+	const [loading, setLoading] = useState(false);
 	const [items, setItems] = useState([]);
 
 	const [openModal, setOpenModal] = useState(false);
@@ -29,9 +30,13 @@ export default function Spinner() {
 		const checkMobile = window.innerWidth <= 768;
 		setMobile(checkMobile);
 
+		setLoading(true);
+
 		getItems().then((res) => setItems(res.data));
 
 		scheduleCRON();
+
+		setLoading(false);
 	}, []);
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
@@ -62,7 +67,7 @@ export default function Spinner() {
 			});
 	};
 
-	if (items.length === 0) {
+	if (loading) {
 		return (
 			<span className='flex w-screen h-screen items-center justify-center'>
 				<span class='animate-ping absolute h-16 w-16 rounded-full bg-green-400'></span>
