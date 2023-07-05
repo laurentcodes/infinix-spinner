@@ -16,7 +16,7 @@ const handler = async (req, res) => {
 
 	if (connectRes.status === 200) {
 		// Define cron job here
-		cron.schedule('0 0 * * *', async () => {
+		cron.schedule('0 6 * * *', async () => {
 			// Run at 00:00 every day
 			console.log('Running at 00:00 every day.');
 
