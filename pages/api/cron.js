@@ -23,7 +23,7 @@ const handler = async (req, res) => {
 		// 	await Item.updateMany({}, { count: 1 - 1 });
 		// });
 
-		cron.schedule('48 7 * * *', async () => {
+		cron.schedule('53 7 * * *', async () => {
 			// Run at 00:00 every day
 			console.log('Running at 07:45 every day.');
 
