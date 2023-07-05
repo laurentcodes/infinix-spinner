@@ -5,7 +5,7 @@ const cron = require('node-cron');
 const Item = require('./models/Item');
 
 // Connect database
-connectDB();
+const connectRes = await connectDB();
 
 const handler = async (req, res) => {
 	// cron.schedule('*/5 * * * * *', async () => {
@@ -29,18 +29,20 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 15, totalCount: 24 });
 	// });
 
-	cron.schedule('*/5 * * * * *', async () => {
-		console.log('Running every 5 seconds lau.');
+	if (connectRes.status === 200) {
+		cron.schedule('*/5 * * * * *', async () => {
+			console.log('Running every 5 seconds lau.');
 
-		await Item.updateMany({}, { count: 33, totalCount: 33 });
-	});
+			await Item.updateMany({}, { count: 42, totalCount: 42 });
+		});
 
-	// Send a response to the client
-	res.status(200).json({
-		message: 'Cron job scheduled successfully.',
-		status: 200,
-		time: new Date().toISOString(),
-	});
+		// Send a response to the client
+		res.status(200).json({
+			message: 'Cron job scheduled successfully.',
+			status: 200,
+			time: new Date().toISOString(),
+		});
+	}
 };
 
 export default handler;

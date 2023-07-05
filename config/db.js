@@ -14,6 +14,11 @@ const connectDB = async () => {
 		connection.isConnected = db.connections[0].readyState;
 
 		console.log('MongoDB connected');
+
+		return {
+			message: 'MongoDB Connected',
+			status: 200,
+		};
 	} catch (error) {
 		console.error(error.message);
 		process.exit(1);
