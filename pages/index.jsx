@@ -53,7 +53,7 @@ export default function Home() {
 
 	return (
 		<main
-			className='h-screen p-5 flex flex-col justify-around items-center overflow-hidden bg-cover'
+			className='h-screen px-5 py-12 md:py-5 flex flex-col justify-around items-center overflow-x-hidden bg-cover'
 			style={{
 				backgroundImage: `url('/assets/background/background_new.png')`,
 			}}
