@@ -34,8 +34,10 @@ export default function Spinner() {
 	}, []);
 
 	useEffect(() => {
-		scheduleCRON();
-	}, []);
+		if (items.length > 0) {
+			scheduleCRON();
+		}
+	}, [items.length]);
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
 	// const itemColors = ['#d8f3dc', '#40916c', '#95d5b2', '#d8f3dc', '#95d5b2'];
