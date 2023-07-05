@@ -30,13 +30,11 @@ export default function Spinner() {
 		const checkMobile = window.innerWidth <= 768;
 		setMobile(checkMobile);
 
-		setLoading(true);
-
 		getItems().then((res) => setItems(res.data));
 
-		scheduleCRON();
-
-		setLoading(false);
+		setTimeout(() => {
+			scheduleCRON();
+		}, 3000);
 	}, []);
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
@@ -67,10 +65,10 @@ export default function Spinner() {
 			});
 	};
 
-	if (loading) {
+	if (items.length === 0) {
 		return (
 			<span className='flex w-screen h-screen items-center justify-center'>
-				<span class='animate-ping absolute h-16 w-16 rounded-full bg-green-400'></span>
+				<span className='animate-ping absolute h-16 w-16 rounded-full bg-green-400'></span>
 			</span>
 		);
 	}

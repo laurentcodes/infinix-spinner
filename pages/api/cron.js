@@ -29,11 +29,11 @@ const handler = async (req, res) => {
 	// 	await Item.updateMany({}, { count: 15, totalCount: 24 });
 	// });
 
-	if (connectRes.status === 200) {
+	if (connectRes.connected === 2) {
 		cron.schedule('*/5 * * * * *', async () => {
 			console.log('Running every 5 seconds lau.');
 
-			await Item.updateMany({}, { count: 42, totalCount: 42 });
+			await Item.updateMany({}, { count: 656, totalCount: 656 });
 		});
 
 		// Send a response to the client
