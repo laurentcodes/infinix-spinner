@@ -23,12 +23,18 @@ const handler = async (req, res) => {
 		// 	await Item.updateMany({}, { count: 1 - 1 });
 		// });
 
-		cron.schedule('53 7 * * *', async () => {
-			// Run at 00:00 every day
-			console.log('Running at 07:45 every day.');
+		cron.schedule('*/2 * * * *', async () => {
+			console.log('Running every 2 minutes lau.');
 
 			await Item.updateMany({}, { count: 15, totalCount: 24 });
 		});
+
+		// cron.schedule('0 0 */23 * *', async () => {
+		// 	// Run every 23 hours
+		// 	console.log('Running every 23 hours.');
+
+		// 	await Item.updateMany({}, { count: 15, totalCount: 24 });
+		// });
 
 		// Send a response to the client
 		res.status(200).json({
