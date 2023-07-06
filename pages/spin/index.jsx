@@ -78,7 +78,7 @@ export default function Spinner() {
 	return (
 		<main
 			className='h-screen md:h-full w-screen flex flex-col justify-start items-center bg-cover'
-			style={{ backgroundImage: `url('/assets/background.png')` }}
+			style={{ backgroundImage: `url('/assets/background/background.png')` }}
 		>
 			{isExploding && (
 				<ConfettiExplosion
