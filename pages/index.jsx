@@ -6,13 +6,11 @@ import { useState, useEffect } from 'react';
 import { TextInput } from 'flowbite-react';
 import { z } from 'zod';
 
-import { scheduleCRON } from './api/services';
-
 import screenshot from '../public/assets/screenshot.png';
 import infinix_easybuy from '../public/assets/infinix-easybuy.png';
 
 import spinToWin from '../public/assets/background/spin-to-win.png';
-import downPayment from '../public/assets/background/down-payment.png';
+import downPayment from '../public/assets/background/down-payment-new.png';
 
 export default function Home() {
 	const router = useRouter();
