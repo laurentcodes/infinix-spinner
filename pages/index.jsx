@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { TextInput } from 'flowbite-react';
 import { z } from 'zod';
 
-import screenshot from '../public/assets/screenshot.png';
+// import screenshot from '../public/assets/screenshot.png';
 import infinix_easybuy from '../public/assets/infinix-easybuy.png';
 
 import spinToWin from '../public/assets/background/spin-to-win.png';
@@ -62,7 +62,7 @@ export default function Home() {
 			</div>
 
 			<div className='flex flex-col md:flex-row w-screen justify-evenly items-center'>
-				<Image src={screenshot} alt='Screenshot of Spinner' width={450} />
+				{/* <Image src={screenshot} alt='Screenshot of Spinner' width={450} /> */}
 
 				<div className='flex flex-col items-center'>
 					<Image src={infinix_easybuy} alt='Infinix Logo' width={300} />
