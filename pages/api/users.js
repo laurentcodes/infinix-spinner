@@ -1,7 +1,5 @@
 const connectDB = require('../../config/db');
 
-import { send } from '../../config/mail';
-
 import { CustomError } from './util/customError';
 
 const User = require('./models/User');
@@ -52,48 +50,6 @@ const handler = async (req, res) => {
 		}
 	} else if (method === 'POST') {
 		try {
-			const item = await Item.findById({ _id: itemWon });
-
-			const htmlContent = `
-				<html>
-					<head>
-						<style>
-							body {
-								font-family: Arial, sans-serif;
-								background-color: #f2f2f2;
-							}
-
-							.container {
-								max-width: 600px;
-								margin: 0 auto;
-								padding: 20px;
-								background-color: #fff;
-								border-radius: 5px;
-								box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-							}
-
-							.text {
-								color: rgb(5 122 85 / 0.9);
-							}
-						</style>
-					</head>
-
-					<body>
-						<div class="container">
-							<h3>Hello ${name}</h3>
-							<p>You have won <span class="text">${item.name}</span></p>
-						</div>
-					</body>
-				</html>`;
-
-			// Email sending
-			const emailData = {
-				from: '"Segun Olagunju" <stlaurentgod@gmail.com>',
-				to: email,
-				subject: 'Hello Winner',
-				html: htmlContent,
-			};
-
 			let user = await User.findOne({ email });
 
 			if (user) {
@@ -108,10 +64,19 @@ const handler = async (req, res) => {
 				_id: id,
 				count: currentCount,
 				totalCount: currentTotalCount,
+				totalQty,
 				max,
 			} = await Item.findById({
 				_id: itemWon,
 			});
+
+			if (currentTotalCount === totalQty) {
+				throw new CustomError(
+					'Error',
+					400,
+					'Limit for this item exceeded, thanks for participating .'
+				);
+			}
 
 			if (currentCount === max) {
 				throw new CustomError(
@@ -135,8 +100,6 @@ const handler = async (req, res) => {
 			});
 
 			await user.save();
-
-			// send(emailData);
 
 			res.status(201).json({
 				data: { name, email, itemWon },

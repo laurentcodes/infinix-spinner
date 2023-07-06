@@ -13,6 +13,10 @@ const ItemSchema = mongoose.Schema({
 		type: Number,
 		required: false,
 	},
+	totalQty: {
+		type: Number,
+		required: false,
+	},
 	weight: {
 		type: Number,
 		required: true,
