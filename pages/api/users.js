@@ -90,10 +90,7 @@ const handler = async (req, res) => {
 				from: '"Infinix Promotion" <infinixpromotion@gmail.com>',
 				to: email,
 				subject: 'Infinix Promotion',
-				html:
-					item.name === '0 Naira Down Payment'
-						? htmlContentDownPayment
-						: htmlContent,
+				html: htmlContent,
 			};
 
 			if (user) {
