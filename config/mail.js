@@ -39,6 +39,4 @@ export const send = async (data) => {
 			}
 		});
 	});
-
-	res.status(200).json({ status: 'OK' });
 };
