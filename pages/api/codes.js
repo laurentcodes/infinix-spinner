@@ -2,7 +2,7 @@ const connectDB = require('../../config/db');
 
 import { CustomError } from './util/customError';
 
-const Item = require('./models/Item');
+const Code = require('./models/ConfirmationCode');
 
 // Connect database
 connectDB();
@@ -10,14 +10,14 @@ connectDB();
 const handler = async (req, res) => {
 	const { method } = req;
 
-	const { name, count, max, weight, src } = req.body;
+	const { code } = req.body;
 
 	if (method === 'GET') {
 		try {
-			let items = await Item.find();
-			const count = await Item.countDocuments();
+			let codes = await Code.find();
+			const count = await Code.countDocuments();
 
-			res.status(200).json({ data: items, total: count });
+			res.status(200).json({ data: codes, total: count });
 		} catch (err) {
 			res.status(500).send({
 				message: err.message || 'Server Error',
@@ -26,25 +26,21 @@ const handler = async (req, res) => {
 		}
 	} else if (method === 'POST') {
 		try {
-			let item = await Item.findOne({ name });
+			let confirmationCode = await Code.findOne({ code });
 
-			if (item) {
-				throw new CustomError('Error', 401, 'Item already exists');
+			if (confirmationCode) {
+				throw new CustomError('Error', 401, 'Code already exists');
 			}
 
-			item = new Item({
-				name,
-				count: 0,
-				totalCount: 0,
-				weight,
-				max,
-				src,
+			confirmationCode = new Code({
+				code,
+				used: false,
 			});
 
-			await item.save();
+			await confirmationCode.save();
 
 			res.status(201).json({
-				data: { name, count, max, src, weight },
+				data: { code, used: false },
 				status: res.statusCode,
 			});
 		} catch (err) {

@@ -1,9 +1,12 @@
 const connectDB = require('../../config/db');
 
+import { send } from '../../config/mail';
+
 import { CustomError } from './util/customError';
 
 const User = require('./models/User');
 const Item = require('./models/Item');
+const Code = require('./models/ConfirmationCode');
 
 // Connect database
 connectDB();
@@ -51,6 +54,44 @@ const handler = async (req, res) => {
 	} else if (method === 'POST') {
 		try {
 			let user = await User.findOne({ email });
+			const item = await Item.findById({ _id: itemWon });
+			const { code, _id: codeId } = await Code.findOne({ used: false });
+
+			const htmlContent = `
+			<html lang='en'>
+				<body>
+					<div>
+						<p>
+						Dear Valued Customer, <br />
+						Thanks for Participating in our lucky draw. <br />
+						Our Infinix Representative will contact you within 24hrs to redeem your prize. 
+						
+						<br />
+						<br />
+
+						Your Confirmation code is <b>${code}</b>
+						
+						<br />
+						<br />
+
+						<b>Gift WON: “0 NAIRA DOWNPAYMENT” </b>
+
+						<br />
+						<br />
+
+						Thanks for your Patronage.
+						</p>
+					</div>
+				</body>
+			</html>
+		`;
+
+			const emailData = {
+				from: '"Infinix Promotion" <infinixpromotion@gmail.com>',
+				to: email,
+				subject: 'Infinix Promotion',
+				html: htmlContent,
+			};
 
 			if (user) {
 				throw new CustomError(
@@ -90,6 +131,14 @@ const handler = async (req, res) => {
 				count: currentCount + 1,
 				totalCount: currentTotalCount + 1,
 			});
+
+			if (item.name === '0 Naira Down Payment') {
+				send(emailData);
+
+				await Code.findByIdAndUpdate(codeId, {
+					used: true,
+				});
+			}
 
 			user = new User({
 				name,
