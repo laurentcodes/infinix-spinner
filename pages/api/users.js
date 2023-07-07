@@ -74,7 +74,7 @@ const handler = async (req, res) => {
 						<br />
 						<br />
 
-						<b>Gift WON: “0 NAIRA DOWNPAYMENT” </b>
+						<b>Gift WON: ${item.name}</b>
 
 						<br />
 						<br />
@@ -90,7 +90,10 @@ const handler = async (req, res) => {
 				from: '"Infinix Promotion" <infinixpromotion@gmail.com>',
 				to: email,
 				subject: 'Infinix Promotion',
-				html: htmlContent,
+				html:
+					item.name === '0 Naira Down Payment'
+						? htmlContentDownPayment
+						: htmlContent,
 			};
 
 			if (user) {
@@ -98,6 +101,14 @@ const handler = async (req, res) => {
 					'Error',
 					401,
 					'You have already participated in this contest.'
+				);
+			}
+
+			if (!code) {
+				throw new CustomError(
+					'Error',
+					401,
+					'Limit exceeded, thanks for participating.'
 				);
 			}
 
@@ -132,7 +143,7 @@ const handler = async (req, res) => {
 				totalCount: currentTotalCount + 1,
 			});
 
-			if (item.name === '0 Naira Down Payment') {
+			if (item.name !== 'Thank You') {
 				send(emailData);
 
 				await Code.findByIdAndUpdate(codeId, {
