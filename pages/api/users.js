@@ -143,6 +143,8 @@ const handler = async (req, res) => {
 			if (item.name !== 'Thank You') {
 				send(emailData);
 
+				console.log('send');
+
 				await Code.findByIdAndUpdate(codeId, {
 					used: true,
 				});
