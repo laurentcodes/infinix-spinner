@@ -11,10 +11,19 @@ const config = {
 	},
 };
 
-export const send = (data) => {
+export const send = async (data) => {
 	const transporter = nodemailer.createTransport(config);
 
-	transporter.sendMail(data, (err, info) => {
+	// Verify connection configuration
+	transporter.verify((error, success) => {
+		if (error) {
+			console.log(error.message);
+		} else {
+			console.log('Server is ready to take our messages');
+		}
+	});
+
+	await transporter.sendMail(data, (err, info) => {
 		if (err) {
 			console.log(err);
 		} else {
