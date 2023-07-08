@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 	if (connectRes.connected === 1) {
 		// Define cron job here
 		cron.schedule(
-			'14 3 * * *',
+			'22 3 * * *',
 			async () => {
 				// Run at 00:00 every day
 				console.log('Running at 00:00 every day.');
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 			},
 			{
 				scheduled: true,
-				timezone: 'Etc/UTC',
+				timezone: 'Africa/Lagos',
 			}
 		);
 	}
