@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 import SpinningWheel from '@/components/Spinner';
 
-import { getItems, signUp, scheduleCRON } from '../api/services';
+import { getItems, signUp } from '../api/services';
 
 import infinix_easybuy from '../../public/assets/infinix-easybuy.png';
 
@@ -18,7 +18,6 @@ export default function Spinner() {
 
 	const { name, email, phone } = router.query;
 
-	const [loading, setLoading] = useState(false);
 	const [items, setItems] = useState([]);
 
 	const [openModal, setOpenModal] = useState(false);
@@ -32,12 +31,6 @@ export default function Spinner() {
 
 		getItems().then((res) => setItems(res.data));
 	}, []);
-
-	useEffect(() => {
-		if (items.length > 0) {
-			scheduleCRON();
-		}
-	}, [items.length]);
 
 	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
 	// const itemColors = ['#d8f3dc', '#40916c', '#95d5b2', '#d8f3dc', '#95d5b2'];
