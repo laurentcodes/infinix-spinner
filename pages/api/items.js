@@ -53,6 +53,13 @@ const handler = async (req, res) => {
 				code: err.code || 500,
 			});
 		}
+	} else if (method === 'PUT') {
+		await Item.updateMany({}, { count: 0 });
+
+		res.status(200).json({
+			data: { message: 'Cleared Counts' },
+			status: res.statusCode,
+		});
 	} else {
 		res.status(405).send({ message: 'Invalid' });
 	}
