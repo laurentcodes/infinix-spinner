@@ -19,3 +19,10 @@ export const getItems = async () => {
 
 	return data;
 };
+
+// CRON
+export const scheduleCRON = async () => {
+	const { data } = await axios.get('/api/cron');
+
+	return data;
+};
