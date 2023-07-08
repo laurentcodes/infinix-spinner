@@ -7,7 +7,7 @@ await connectDB();
 
 const handler = (req, res) => {
 	// Run at 00:00 every day
-	console.log('Running at 00:00 every day.');
+	console.log('Running at 02:46 every day.');
 
 	Item.updateMany({}, { count: 0 });
 
