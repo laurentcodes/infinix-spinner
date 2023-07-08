@@ -10,7 +10,7 @@ const connectRes = await connectDB();
 export default async function handler(req, res) {
 	if (connectRes.connected === 1) {
 		// Define cron job here
-		cron.schedule('59 2 * * *', async () => {
+		cron.schedule('04 4 * * *', async () => {
 			// Run at 00:00 every day
 			console.log('Running at 00:00 every day.');
 
