@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 	await Item.updateMany({}, { count: 0 });
 
 	res.status(200).json({
-		data: { message: 'Cleared Counts' },
+		message: 'Cleared Counts',
 		status: res.statusCode,
 	});
 }
