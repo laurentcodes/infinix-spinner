@@ -5,7 +5,7 @@ const Item = require('./models/Item');
 // Connect database
 await connectDB();
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
 	// Run at 00:00 every day
 	console.log('Running at 00:00 every day.');
 
@@ -16,4 +16,6 @@ export default async function handler(req, res) {
 		status: 200,
 		time: new Date().toISOString(),
 	});
-}
+};
+
+export default handler;
