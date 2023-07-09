@@ -32,8 +32,6 @@ export default function Spinner() {
 		getItems().then((res) => setItems(res.data));
 	}, []);
 
-	// const itemColors = ['#F0CF50', '#815CD1', '#EE4040', '#194707', '#3DA5E0'];
-	// const itemColors = ['#d8f3dc', '#40916c', '#95d5b2', '#d8f3dc', '#95d5b2'];
 	const itemColors = ['#61a5c2', '#2a6f97', '#1b4332', '#52b788', '#014f86'];
 
 	const onFinished = (selectedItem) => {
@@ -49,10 +47,17 @@ export default function Spinner() {
 				}
 			})
 			.catch((err) => {
-				toast(err.response.data.message, {
-					autoClose: 2000,
-					type: 'error',
-				});
+				if (err.response.data.code === 401) {
+					toast(err.response.data.message, {
+						autoClose: 2000,
+						type: 'success',
+					});
+				} else {
+					toast(err.response.data.message, {
+						autoClose: 2000,
+						type: 'error',
+					});
+				}
 
 				setTimeout(() => {
 					router.push('/');
@@ -156,13 +161,6 @@ export default function Spinner() {
 								spin. Let the celebration begin!
 							</p>
 						)}
-
-						{/* {wonItem !== 'Thank You' && (
-							<p>
-								An email with instructions on how to claim your winning will be
-								sent to you.
-							</p>
-						)} */}
 					</div>
 				</Modal.Body>
 			</Modal>

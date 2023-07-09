@@ -96,17 +96,13 @@ const handler = async (req, res) => {
 			if (user) {
 				throw new CustomError(
 					'Error',
-					401,
+					400,
 					'You have already participated in this contest.'
 				);
 			}
 
 			if (!code) {
-				throw new CustomError(
-					'Error',
-					401,
-					'Limit exceeded, thanks for participating.'
-				);
+				throw new CustomError('Error', 401, 'Thanks for participating.');
 			}
 
 			const {
@@ -120,19 +116,11 @@ const handler = async (req, res) => {
 			});
 
 			if (currentTotalCount === totalQty) {
-				throw new CustomError(
-					'Error',
-					400,
-					'Limit for this item exceeded, thanks for participating .'
-				);
+				throw new CustomError('Error', 401, 'Thanks for participating.');
 			}
 
 			if (currentCount === max) {
-				throw new CustomError(
-					'Error',
-					400,
-					'Limit for this item exceeded today, please try again tomorrow.'
-				);
+				throw new CustomError('Error', 401, 'Thanks for participating.');
 			}
 
 			await Item.findByIdAndUpdate(id, {
