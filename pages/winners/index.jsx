@@ -59,6 +59,7 @@ export default function Winners() {
 						<Table.HeadCell>Email</Table.HeadCell>
 						<Table.HeadCell>Phone Number</Table.HeadCell>
 						<Table.HeadCell>Item Won</Table.HeadCell>
+						<Table.HeadCell>Date</Table.HeadCell>
 					</Table.Head>
 
 					<Table.Body className='divide-y bg-green-500'>
@@ -74,6 +75,9 @@ export default function Winners() {
 									<Table.Cell>{winner.email}</Table.Cell>
 									<Table.Cell>{winner.phone}</Table.Cell>
 									<Table.Cell>{winner.itemWon.name}</Table.Cell>
+									<Table.Cell>
+										{new Date(winner.date).toLocaleDateString()}
+									</Table.Cell>
 								</Table.Row>
 							))}
 					</Table.Body>
