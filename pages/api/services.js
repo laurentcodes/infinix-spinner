@@ -19,3 +19,16 @@ export const getItems = async () => {
 
 	return data;
 };
+
+// CODES
+export const getCodes = async () => {
+	const { data } = await axios.get('/api/codes');
+
+	return data;
+};
+
+export const createCode = async (code) => {
+	const { data } = await axios.post('/api/codes', code);
+
+	return data;
+};

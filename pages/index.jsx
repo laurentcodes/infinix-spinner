@@ -28,6 +28,17 @@ export default function Home() {
 			.max(11, { message: 'Invalid phone number' }),
 	});
 
+	// const handleCodes = (e) => {
+	// 	e.preventDefault();
+
+	// 	for (let i = 0; i < codes.length; i++) {
+	// 		const code = { code: codes[i] };
+	// 		console.log(code);
+
+	// 		// createCode(code).then((res) => console.log(res));
+	// 	}
+	// };
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
